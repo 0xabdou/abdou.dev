@@ -1,0 +1,33 @@
+import Document, {
+  DocumentContext,
+  Head,
+  Html,
+  Main,
+  NextScript
+} from 'next/document';
+
+class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext) {
+    return Document.getInitialProps(ctx);
+  }
+
+  render() {
+    return (
+      <Html className="bg-black">
+        <Head>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          />
+          <script src="https://use.fontawesome.com/7b71609399.js"/>
+        </Head>
+        <body>
+        <Main/>
+        <NextScript/>
+        </body>
+      </Html>
+    );
+  }
+}
+
+export default MyDocument;
