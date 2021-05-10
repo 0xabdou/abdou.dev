@@ -1,9 +1,25 @@
+import Head from "next/head";
+
 const Home = () => {
   return (
     <div
       className="relative flex flex-col md:items-center p-4 bg-white dark:bg-knight
       w-full mt-10 md:mt-16"
     >
+      <Head>
+        <title>Abdou Ouahib | Software Engineer 🚀</title>
+        <meta
+          name="description"
+          content="A type-safe software engineer and tech writer, building
+            apps by day, playing chess by night. I work mainly with React
+            and Next.js, but can Flutter just as good."
+        />
+        <meta
+          name="keywords"
+          content="software engineer, software developer, web developer,
+            mobile developer, portfolio, blog, React, Next.js, Flutter, GraphQL"
+        />
+      </Head>
       <img
         className="absolute rounded-full
         -top-8 md:-top-14 md:right-1/2

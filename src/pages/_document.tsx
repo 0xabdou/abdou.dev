@@ -13,7 +13,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html className="dark">
+      <Html lang="en-US" className="dark">
         <Head>
           <link
             rel="stylesheet"
