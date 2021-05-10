@@ -1,7 +1,9 @@
-export default function Home() {
+const Home = () => {
   return (
     <div
-      className="relative flex flex-col md:items-center p-4 bg-knight w-full mt-10 md:mt-16">
+      className="relative flex flex-col md:items-center p-4 bg-white dark:bg-knight
+      w-full mt-10 md:mt-16"
+    >
       <img
         className="absolute rounded-full
         -top-8 md:-top-14 md:right-1/2
@@ -12,10 +14,10 @@ export default function Home() {
         alt="Profile photo"
       />
       <h1
-        className="mt-8 md:mt-16 text-white text-3xl font-bold mb-2">
+        className="mt-8 md:mt-16 text-black dark:text-white text-3xl font-bold mb-2">
         Abdou Ouahib
       </h1>
-      <p className="text-gray-200 mb-2">
+      <p className="text-black dark:text-gray-200 mb-2">
         Type-safe Software Developer 🚀 Tech Writer ✍️
       </p>
       <div className="flex flex-wrap">
@@ -33,7 +35,7 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
 
 type HeaderLinkProps = {
   icon: string,
@@ -45,7 +47,8 @@ const HeaderLink = (props: HeaderLinkProps) => {
   return (
     <a
       className={`flex items-center
-      text-sm text-gray-400 ${props.href && "hover:text-mineta"}
+      text-sm text-gray-500 dark:text-gray-400 
+      ${props.href && "hover:text-mineta-dark dark:hover:text-mineta"}
       pr-8 pt-2 pb-2`}
       href={props.href}
       target="_blank"
@@ -55,3 +58,5 @@ const HeaderLink = (props: HeaderLinkProps) => {
     </a>
   );
 };
+
+export default Home;

@@ -13,7 +13,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html className="bg-black">
+      <Html className="dark">
         <Head>
           <link
             rel="stylesheet"
@@ -21,7 +21,7 @@ class MyDocument extends Document {
           />
           <script src="https://use.fontawesome.com/7b71609399.js"/>
         </Head>
-        <body>
+        <body className="bg-old dark:bg-black">
         <Main/>
         <NextScript/>
         </body>
