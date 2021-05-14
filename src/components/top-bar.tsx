@@ -9,10 +9,14 @@ type TopBarProps = {
 const TopBar = (props: TopBarProps) => {
   return (
     <div
-      className="fixed w-screen flex items-center h-14 p-2 z-20
+      className="flex items-center h-14 p-2
         bg-white dark:bg-knight shadow"
     >
-      <IconButton icon="fa fa-bars" onClick={props.onMenuClicked}/>
+      <IconButton
+        icon="fa fa-bars"
+        onClick={props.onMenuClicked}
+        aria-haspopup
+      />
       <Link href="/">
         <span
           className="flex items-center content-center

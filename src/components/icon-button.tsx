@@ -1,9 +1,9 @@
 type IconButtonProps = {
   icon: string
   onClick?: () => void,
-};
+} & JSX.IntrinsicAttributes;
 
-const IconButton = ({icon, onClick}: IconButtonProps) => {
+const IconButton = ({icon, onClick, ...props}: IconButtonProps) => {
   return (
     <button
       className="rounded-full
@@ -13,6 +13,7 @@ const IconButton = ({icon, onClick}: IconButtonProps) => {
         focus:outline-none dark:focus:outline-none
         h-10 w-10 mr-2"
       onClick={onClick}
+      {...props}
     >
       <i className={`${icon} text-black dark:text-white text-xl`}/>
     </button>

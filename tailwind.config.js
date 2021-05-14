@@ -9,7 +9,7 @@ module.exports = {
         },
         mineta: {
           DEFAULT: "#7b78ff",
-          dark: "#4643f6",
+          dark: "#1827ce",
         },
         old: {
           DEFAULT: "#eef0f1"
@@ -20,11 +20,19 @@ module.exports = {
       },
       transitionProperty: {
         "absolution": "left, right, top, bottom"
+      },
+      fontSize: {
+        "markup-h1": "1.97rem",
+        "markup-h2": "1.70rem",
+        "markup-h3": "1.40rem",
+        "markup-h4": "1.15rem",
+      },
+      fontFamily: {
+        'sans': ['Roboto', 'Helvetica', 'Arial', 'sans-serif']
       }
     },
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio')
+  ],
 };

@@ -1,28 +1,9 @@
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useState} from "react";
+import {useTheme} from "../shared/theme-context";
 
 const ThemeSwitch = () => {
   const [focused, setFocused] = useState(false);
-  const [on, setOn] = useState(false);
-
-  useEffect(() => {
-    if (localStorage.getItem("theme") == "light") {
-      setOn(true);
-      document.documentElement.classList.remove("dark");
-    }
-    // The theme is dark by default
-  }, []);
-
-  const onClick = useCallback(() => {
-    if (on) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-      setOn(false);
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      setOn(true);
-    }
-  }, [on, setOn]);
+  const {theme, toggleTheme} = useTheme();
 
   const mounted = useCallback((el: HTMLButtonElement) => {
     if (!el) return;
@@ -34,6 +15,7 @@ const ThemeSwitch = () => {
     };
   }, []);
 
+  const on = theme == "dark";
   return (
     <button
       className="
@@ -41,11 +23,11 @@ const ThemeSwitch = () => {
         rounded-full bg-gray-600 focus:outline-none
       "
       ref={mounted}
-      onClick={onClick}
+      onClick={toggleTheme}
     >
       <div className={`
-        absolute left-1 ${on && "left-8"} transition-absolution duration-300 
-        h-5 w-5 bg-white rounded-full  ${focused && "shadow-switch"}
+        absolute left-1 ${on && "left-8"} transition-absolution duration-300
+        ease-out h-5 w-5 bg-white rounded-full  ${focused && "shadow-switch"}
       `}
       />
       <div className={`transition-opacity ${on ? "" : "opacity-0"}`}>🌜</div>
