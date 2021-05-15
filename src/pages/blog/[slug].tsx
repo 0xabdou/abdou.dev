@@ -28,8 +28,15 @@ const components: Components = {
         </ThemeContext.Consumer>
       );
     }
-    return <code
-      className="bg-black bg-opacity-10 dark:bg-gray-50 dark:bg-opacity-10 px-1 text-sm break-words" {...props}>{children}</code>;
+    return (
+      <code className="bg-black dark:bg-gray-50
+        bg-opacity-10 dark:bg-opacity-10
+        text-sm break-words text-black dark:text-white px-1"
+            {...props}
+      >
+        {children}
+      </code>
+    );
   },
   blockquote(props) {
     return (
@@ -106,8 +113,8 @@ const BlogArticle = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const date = useFormattedDate(new Date(props.meta.publishedAt));
 
   return (
-    <div className="flex flex-col max-w-full md:max-w-2xl lg:max-w-3xl md:mx-4
-        bg-white dark:bg-knight text-lg"
+    <div className="flex flex-col max-w-full md:max-w-2xl lg:max-w-screen-md
+      md:mx-4 bg-white dark:bg-knight text-lg"
     >
       <header className="pb-5">
         <div className="w-full aspect-w-16 aspect-h-7 object-cover">

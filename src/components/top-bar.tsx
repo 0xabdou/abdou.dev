@@ -31,7 +31,6 @@ const TopBar = (props: TopBarProps) => {
       </Link>
       <div className="flex-grow"/>
       <ThemeSwitch/>
-      <IconButton icon="fa fa-search"/>
     </div>
   );
 };

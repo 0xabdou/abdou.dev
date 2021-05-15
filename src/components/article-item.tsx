@@ -11,7 +11,7 @@ const ArticleItem = (props: ArticleItemProps) => {
   const {title, summary, tags, readTime, slug} = props.article;
 
   return (
-    <div className="px-4 py-3">
+    <div className="px-4 py-3 bg-white dark:bg-knight rounded">
       <h3
         className="text-black dark:text-white text-2xl font-bold
           hover:text-mineta-dark dark:hover:text-mineta"

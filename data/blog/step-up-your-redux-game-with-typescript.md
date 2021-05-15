@@ -494,7 +494,7 @@ const {loading, error} = useAppSelector(state => {
 
 That's it, refresh the page, enter an email and a password, click login, and BOOM, they're incorrect 🤣. Use the following credentials to login:
 
-```
+``` plain-text
 Email: escanor@gmail.com
 Pass: password
 ```
