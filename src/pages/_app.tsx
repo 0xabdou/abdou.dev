@@ -4,6 +4,7 @@ import {useCallback, useEffect, useState} from "react";
 import ThemeContext, {ThemeContextType} from "../shared/theme-context";
 import TopBar from "../components/top-bar";
 import Drawer from "../components/drawer";
+import Footer from "../components/footer";
 
 const MyApp = ({Component, pageProps}: AppProps) => {
   const [open, setOpen] = useState(false);
@@ -37,9 +38,12 @@ const MyApp = ({Component, pageProps}: AppProps) => {
           <TopBar onMenuClicked={() => setOpen(true)}/>
         </header>
         <Drawer open={open} onClose={() => setOpen(false)}/>
-        <main className="flex justify-center w-full max-w-full md:px-2">
+        <main
+          className="flex justify-center w-full max-w-full md:px-2
+            min-h-screen pt-14">
           <Component {...pageProps} />
         </main>
+        <Footer/>
       </div>
     </ThemeContext.Provider>
   );

@@ -8,6 +8,7 @@ import tags, {Tag} from "../../../data/tags/tags";
 import Link from "next/link";
 import ThemeContext from "../../shared/theme-context";
 import useFormattedDate from "../../shared/use-formatted-date";
+import Head from "next/head";
 
 const baseHeaderStyle = "font-extrabold text-black dark:text-white my-2 leading-9";
 const components: Components = {
@@ -116,6 +117,10 @@ const BlogArticle = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     <div className="flex flex-col max-w-full md:max-w-2xl lg:max-w-screen-md
       md:mx-4 bg-white dark:bg-knight text-lg"
     >
+      <Head>
+        <title>{props.meta.title}</title>
+        <meta name="description" content={props.meta.summary}/>
+      </Head>
       <header className="pb-5">
         <div className="w-full aspect-w-16 aspect-h-7 object-cover">
           <img src={props.meta.banner} alt="Article banner"/>
