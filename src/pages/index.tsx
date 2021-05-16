@@ -53,7 +53,7 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           <HeaderLink
             icon="fa fa-twitter"
             label="Twitter"
-            href="https://twitter.com/AbdoOuahib"
+            href="https://twitter.com/AbdouOuahib"
           />
           <HeaderLink
             icon="fa fa-linkedin"
