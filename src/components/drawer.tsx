@@ -40,7 +40,7 @@ const Drawer = (props: DrawerProps) => {
 
   if (!mounted) return null;
   return (
-    <div
+    <nav
       className="fixed flex top-0 bottom-0 left-0 right-0 z-40 overflow-hidden">
       <div
         className={`flex flex-col w-80 max-w-full h-full bg-white dark:bg-knight 
@@ -54,7 +54,12 @@ const Drawer = (props: DrawerProps) => {
             border-opacity-10 dark:border-opacity-10"
         >
           Abdou's Corner
-          <IconButton onClick={props.onClose} icon="fa fa-times"/>
+          <IconButton
+            onClick={props.onClose}
+            icon="fa fa-times"
+            aria-label="Close menu"
+            title="Close"
+          />
         </div>
         <div className="flex flex-col p-2">
           <MenuItem
@@ -83,7 +88,7 @@ const Drawer = (props: DrawerProps) => {
           ${!open && "bg-opacity-0"} ${open && "bg-opacity-30"}`}
         onClick={props.onClose}
       />
-    </div>
+    </nav>
   );
 };
 

@@ -15,19 +15,23 @@ const TopBar = (props: TopBarProps) => {
       <IconButton
         icon="fa fa-bars"
         onClick={props.onMenuClicked}
+        aria-label="Open menu"
+        title="Menu"
         aria-haspopup
       />
       <Link href="/">
-        <span
+        <a
           className="flex items-center content-center
           text-white dark:text-black
           bg-black dark:bg-white hover:bg-gray-600 dark:hover:bg-gray-300
           text-xl font-bold
           h-10 px-2
           rounded cursor-pointer"
+          aria-label="Go home"
+          title="Home"
         >
           ABDOU
-        </span>
+        </a>
       </Link>
       <div className="flex-grow"/>
       <ThemeSwitch/>

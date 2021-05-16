@@ -2,6 +2,7 @@ import Head from "next/head";
 import ArticleItem from "../components/article-item";
 import {Article, getAllArticles} from "../lib/blog";
 import {GetStaticProps, InferGetStaticPropsType} from "next";
+import Link from "next/link";
 
 const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -61,21 +62,36 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           />
         </div>
       </div>
-      <div className="flex flex-col bg-white dark:bg-knight mt-12
+      <div className="flex flex-col bg-white dark:bg-knight mt-12 mb-12
         divide-y divide-solid divide-black divide-opacity-10
         dark:divide-white dark:divide-opacity-10"
       >
-        <h2
-          className="text-black dark:text-white text-xl font-bold py-3 px-4"
-          style={{fontSize: "1.75rem"}}
-        >
-          Recent articles
-        </h2>
+        <div className="flex items-center justify-between py-3 px-4">
+          <h2
+            className="text-black dark:text-white text-2xl font-bold "
+          >
+            Recent articles
+          </h2>
+          <Link href={"/blog"}>
+            <a className="hidden sm:inline text-gray-500 dark:text-gray-400
+             hover:text-mineta-dark dark:hover:text-mineta">
+              Show more
+            </a>
+          </Link>
+        </div>
         {
           props.articles.map(article => (
             <ArticleItem article={article} key={article.slug}/>
           ))
         }
+        <Link href={"/blog"}>
+          <a className="sm:hidden p-4 text-center
+            text-gray-500 dark:text-gray-400
+            hover:text-mineta-dark dark:hover:text-mineta"
+          >
+            Show more
+          </a>
+        </Link>
       </div>
     </div>
   );

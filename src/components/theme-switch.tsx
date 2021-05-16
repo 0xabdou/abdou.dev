@@ -24,6 +24,8 @@ const ThemeSwitch = () => {
       "
       ref={mounted}
       onClick={toggleTheme}
+      aria-label="Toggle theme"
+      title="Toggle theme"
     >
       <div className={`
         absolute left-1 ${on && "left-8"} transition-absolution duration-300
