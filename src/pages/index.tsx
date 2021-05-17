@@ -3,6 +3,7 @@ import ArticleItem from "../components/article-item";
 import {ArticleMeta, getAllArticles} from "../lib/blog";
 import {GetStaticProps, InferGetStaticPropsType} from "next";
 import Link from "next/link";
+import TwitterCard from "../components/twitter-card";
 
 const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -20,6 +21,7 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           content="software engineer, software developer, web developer,
             mobile developer, portfolio, blog, React, Next.js, Flutter, GraphQL"
         />
+        <TwitterCard image="/static/images/card.png"/>
       </Head>
       <div
         className="relative flex flex-col md:items-center rounded

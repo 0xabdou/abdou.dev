@@ -9,6 +9,7 @@ import Link from "next/link";
 import ThemeContext from "../../shared/theme-context";
 import useFormattedDate from "../../shared/use-formatted-date";
 import Head from "next/head";
+import TwitterCard from "../../components/twitter-card";
 
 const baseHeaderStyle = "font-extrabold text-black dark:text-white my-2 leading-9";
 const components: Components = {
@@ -120,6 +121,7 @@ const BlogArticle = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Head>
         <title>{props.meta.title}</title>
         <meta name="description" content={props.meta.summary}/>
+        <TwitterCard image={props.meta.banner}/>
       </Head>
       <header className="pb-5">
         <div className="w-full aspect-w-16 aspect-h-7 object-cover">
