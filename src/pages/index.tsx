@@ -6,22 +6,25 @@ import Link from "next/link";
 import TwitterCard from "../components/twitter-card";
 
 const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const title = "Abdou Ouahib | Software Engineer 🚀";
+  const description = "A type-safe software engineer and tech writer, building"
+    + "apps by day, playing chess by night. I work mainly with React"
+    + "and Next.js, but can Flutter just as good.";
   return (
     <div className="flex flex-col w-full max-w-4xl">
       <Head>
-        <title>Abdou Ouahib | Software Engineer 🚀</title>
-        <meta
-          name="description"
-          content="A type-safe software engineer and tech writer, building
-            apps by day, playing chess by night. I work mainly with React
-            and Next.js, but can Flutter just as good."
-        />
+        <title>{title}</title>
+        <meta name="description" content={description}/>
         <meta
           name="keywords"
           content="software engineer, software developer, web developer,
             mobile developer, portfolio, blog, React, Next.js, Flutter, GraphQL"
         />
-        <TwitterCard image="/static/images/card.png"/>
+        <TwitterCard
+          image="/static/images/card.png"
+          title={title}
+          description={description}
+        />
       </Head>
       <div
         className="relative flex flex-col md:items-center rounded
