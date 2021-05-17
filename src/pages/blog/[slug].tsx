@@ -115,7 +115,7 @@ const BlogArticle = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   return (
     <div className="flex flex-col max-w-full md:max-w-2xl lg:max-w-screen-md
-      md:mx-4 mb-52 bg-white dark:bg-knight text-lg"
+      md:mx-4 mb-52 bg-white dark:bg-knight text-lg rounded-lg"
     >
       <Head>
         <title>{props.meta.title}</title>

@@ -1,30 +1,30 @@
 import Head from "next/head";
 import ArticleItem from "../components/article-item";
-import {Article, getAllArticles} from "../lib/blog";
+import {ArticleMeta, getAllArticles} from "../lib/blog";
 import {GetStaticProps, InferGetStaticPropsType} from "next";
 import Link from "next/link";
 
 const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <div className="flex flex-col w-full max-w-4xl">
-      <div
-        className="relative flex flex-col md:items-center
-          w-full mt-10 md:mt-16 p-4 bg-white dark:bg-knight"
-      >
-        <Head>
-          <title>Abdou Ouahib | Software Engineer 🚀</title>
-          <meta
-            name="description"
-            content="A type-safe software engineer and tech writer, building
+      <Head>
+        <title>Abdou Ouahib | Software Engineer 🚀</title>
+        <meta
+          name="description"
+          content="A type-safe software engineer and tech writer, building
             apps by day, playing chess by night. I work mainly with React
             and Next.js, but can Flutter just as good."
-          />
-          <meta
-            name="keywords"
-            content="software engineer, software developer, web developer,
+        />
+        <meta
+          name="keywords"
+          content="software engineer, software developer, web developer,
             mobile developer, portfolio, blog, React, Next.js, Flutter, GraphQL"
-          />
-        </Head>
+        />
+      </Head>
+      <div
+        className="relative flex flex-col md:items-center rounded
+          w-full mt-10 md:mt-16 p-4 bg-white dark:bg-knight"
+      >
         <img
           className="absolute rounded-full
             -top-8 md:-top-14 md:right-1/2
@@ -64,7 +64,7 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       </div>
       <div className="flex flex-col bg-white dark:bg-knight mt-12 mb-12
         divide-y divide-solid divide-black divide-opacity-10
-        dark:divide-white dark:divide-opacity-10"
+        dark:divide-white dark:divide-opacity-10 rounded"
       >
         <div className="flex items-center justify-between py-3 px-4">
           <h2
@@ -104,22 +104,36 @@ type HeaderLinkProps = {
 };
 
 const HeaderLink = (props: HeaderLinkProps) => {
-  return (
-    <a
-      className={`flex items-center
-        text-sm text-gray-500 dark:text-gray-400 
-        ${props.href && "hover:text-mineta-dark dark:hover:text-mineta"}
-        pr-8 pt-2 pb-2`}
-      href={props.href}
-      target="_blank"
-    >
+  const className = `flex items-center
+    text-sm text-gray-500 dark:text-gray-400 
+    ${props.href && "hover:text-mineta-dark dark:hover:text-mineta"}
+    pr-8 pt-2 pb-2`;
+  const children = (
+    <>
       <i className={`${props.icon} mr-2 text-2xl`}/>
       {props.label}
-    </a>
+    </>
+  );
+  if (props.href) {
+    return (
+      <a
+        className={className}
+        href={props.href}
+        rel="noreferrer"
+        target="_blank"
+      >
+        {children}
+      </a>
+    );
+  }
+  return (
+    <span className={className}>
+      {children}
+    </span>
   );
 };
 
-export const getStaticProps: GetStaticProps<{ articles: Article["meta"][] }> = async () => {
+export const getStaticProps: GetStaticProps<{ articles: ArticleMeta[] }> = async () => {
   const articles = getAllArticles().slice(0, 2);
   return {
     props: {articles: articles.map(a => a.meta)}

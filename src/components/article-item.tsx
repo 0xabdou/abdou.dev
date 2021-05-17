@@ -1,15 +1,15 @@
 import Link from "next/link";
-import {Article} from "../lib/blog";
+import {ArticleMeta} from "../lib/blog";
 import useFormattedDate from "../shared/use-formatted-date";
 
 type ArticleItemProps = {
-  article: Article["meta"]
+  article: ArticleMeta
 };
 
 const ArticleItem = (props: ArticleItemProps) => {
   const date = useFormattedDate(new Date(props.article.publishedAt));
   const {title, summary, tags, readTime, slug} = props.article;
-
+  console.log(props.article);
   return (
     <div className="px-4 py-3 bg-white dark:bg-knight rounded">
       <h3

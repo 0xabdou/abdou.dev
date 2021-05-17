@@ -5,17 +5,19 @@ import readingTime from "reading-time";
 
 const root = process.cwd();
 
+export type ArticleMeta = {
+  slug: string,
+  title: string,
+  summary: string,
+  tags: string[],
+  publishedAt: string,
+  banner: string,
+  readTime: number,
+};
+
 export type Article = {
   content: string,
-  meta: {
-    slug: string,
-    title: string,
-    summary: string,
-    tags: string[],
-    publishedAt: string,
-    banner: string,
-    readTime: number,
-  }
+  meta: ArticleMeta
 }
 
 export const getAllArticles = (): Article[] => {

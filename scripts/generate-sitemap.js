@@ -1,8 +1,10 @@
 const globby = require("globby");
 const {writeFileSync} = require("fs");
 const prettier = require("prettier");
+const tags = require("../data/tags/tags.ts").default;
 
 const generateSitemap = async () => {
+  console.log(tags);
   const pages = await globby([
     "src/pages/**/*.tsx",
     "!src/pages/**/_*.tsx",

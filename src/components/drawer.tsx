@@ -80,6 +80,12 @@ const Drawer = (props: DrawerProps) => {
             href="/projects"
             onClick={onItemClicked}
           />
+          <MenuItem
+            icon="/static/icons/tag.svg"
+            label="Tags"
+            href="/tags"
+            onClick={onItemClicked}
+          />
         </div>
       </div>
       <div
