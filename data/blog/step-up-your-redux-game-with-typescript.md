@@ -2,7 +2,7 @@
 title: "Step up your Redux game with Typescript"
 summary: "Learn how to make your Redux strongly typed, so you can benefit from code completion, and all the other good stuff that comes with Typescript's type system"
 tags: [typescript, redux, react]
-publishedAt: '2021-02-22'
+publishedAt: '2021-02-21'
 banner: "/static/images/step-up-your-redux-game-with-typescript/banner.jpg"
 ---
 

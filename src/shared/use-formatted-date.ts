@@ -6,8 +6,8 @@ const useFormattedDate = (date: Date) => {
 
   useEffect(() => {
     const now = new Date();
-    let format = "mmm dd";
-    if (now.getFullYear() != date.getFullYear()) format = "mmm dd yyyy";
+    let format = "mmm d";
+    if (now.getFullYear() != date.getFullYear()) format = "mmm d, yyyy";
     setFormattedDate(dateFormat(date, format));
   }, []);
 
