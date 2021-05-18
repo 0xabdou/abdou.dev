@@ -33,6 +33,21 @@ const tags = {
     color: "#ff5bc8",
     bgColor: "#171e26",
   },
+  testing: {
+    name: "testing",
+    color: "#ffffff",
+    bgColor: "#019b65",
+  },
+  flutter: {
+    name: "flutter",
+    color: "#2B3A48",
+    bgColor: "#56C5F6",
+  },
+  dart: {
+    name: "dart",
+    color: "#03589C",
+    bgColor: "#41C4FF",
+  }
 };
 
 const baseUrl = "https://abdou.dev";
@@ -65,7 +80,6 @@ const generateSitemap = async () => {
   });
   urls = [
     ...urls,
-    wrap("/tags"),
     ...Object.keys(tags).map(tag => wrap(`/tags/${tag}`))
   ];
   const sitemap = `
