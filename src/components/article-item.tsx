@@ -37,7 +37,8 @@ const ArticleItem = (props: ArticleItemProps) => {
           className="flex flex-grow justify-end mb-1
             text-gray-500 dark:text-gray-400 text-right text-xs"
         >
-          {date} - {readTime} min read
+          <time dateTime={props.article.publishedAt}>{date}</time>
+          &nbsp;- {readTime} min read
         </div>
       </div>
     </div>
