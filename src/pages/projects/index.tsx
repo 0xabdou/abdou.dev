@@ -12,12 +12,12 @@ const Projects = () => {
           name="description"
           content={description}
         />
-        <SocialSharePreview
-          image="/static/images/social-share-preview/projects.png"
-          title={title}
-          description={description}
-        />
       </Head>
+      <SocialSharePreview
+        image="/static/images/social-share-preview/projects.png"
+        title={title}
+        description={description}
+      />
       Coming soon..
     </div>
   );

@@ -121,12 +121,12 @@ const BlogArticle = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       <Head>
         <title>{props.meta.title}</title>
         <meta name="description" content={props.meta.summary}/>
-        <SocialSharePreview
-          image={props.meta.banner}
-          title={props.meta.title}
-          description={props.meta.summary}
-        />
       </Head>
+      <SocialSharePreview
+        image={props.meta.banner}
+        title={props.meta.title}
+        description={props.meta.summary}
+      />
       <header className="pb-5">
         <div className="w-full aspect-w-16 aspect-h-7 object-cover">
           <img src={props.meta.banner} alt="Article banner"/>

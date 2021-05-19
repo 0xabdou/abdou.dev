@@ -20,12 +20,12 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           content="software engineer, software developer, web developer,
             mobile developer, portfolio, blog, React, Next.js, Flutter, GraphQL"
         />
-        <SocialSharePreview
-          image="/static/images/social-share-preview/home.png"
-          title={title}
-          description={description}
-        />
       </Head>
+      <SocialSharePreview
+        image="/static/images/social-share-preview/home.png"
+        title={title}
+        description={description}
+      />
       <div
         className="relative flex flex-col md:items-center rounded
           w-full mt-10 md:mt-16 p-4 bg-white dark:bg-knight"

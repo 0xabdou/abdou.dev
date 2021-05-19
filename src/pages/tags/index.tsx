@@ -23,12 +23,12 @@ const AllTags = ({tags}: AllTagsProps) => {
           name="description"
           content={description}
         />
-        <SocialSharePreview
-          image="/static/images/social-share-preview/tags.png"
-          title={title}
-          description={description}
-        />
       </Head>
+      <SocialSharePreview
+        image="/static/images/social-share-preview/tags.png"
+        title={title}
+        description={description}
+      />
       <header>
         <h1
           className="text-markup-h1 text-black dark:text-white font-extrabold
