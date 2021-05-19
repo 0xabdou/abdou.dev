@@ -3,6 +3,7 @@ import tags, {Tag} from "../../../data/tags/tags";
 import {getAllArticles} from "../../lib/blog";
 import Link from "next/link";
 import Head from "next/head";
+import SocialSharePreview from "../../components/social-share-preview";
 
 type CountedTag = Tag & { postCount: number };
 
@@ -11,13 +12,21 @@ type AllTagsProps = {
 };
 
 const AllTags = ({tags}: AllTagsProps) => {
+  const title = "Tags | Abdou Ouahib";
+  const description = "Here are all the tags used throughout the blog. They help group articles into categories";
+
   return (
     <div className="w-full max-w-screen-lg mx-1 sm:mx-2">
       <Head>
-        <title>Tags | Abdou Ouahib</title>
+        <title>{title}</title>
         <meta
           name="description"
-          content="Here are all the tags used throughout the blog. They help group articles into categories"
+          content={description}
+        />
+        <SocialSharePreview
+          image="/static/images/social-share-preview/tags.png"
+          title={title}
+          description={description}
         />
       </Head>
       <header>

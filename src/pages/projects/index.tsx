@@ -1,13 +1,21 @@
 import Head from "next/head";
+import SocialSharePreview from "../../components/social-share-preview";
 
 const Projects = () => {
+  const title = "Projects | Abdou Ouahib";
+  const description = "Here are all the relevant projects I've worked on";
   return (
     <div className="flex items-center text-black: dark:text-white">
       <Head>
-        <title>Projects | Abdou Ouahib</title>
+        <title>{title}</title>
         <meta
           name="description"
-          content="Here are all the relevant projects I've worked on"
+          content={description}
+        />
+        <SocialSharePreview
+          image="/static/images/social-share-preview/projects.png"
+          title={title}
+          description={description}
         />
       </Head>
       Coming soon..

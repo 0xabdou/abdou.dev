@@ -3,7 +3,7 @@ title: "I built a chat app using React and GraphQL"
 summary: "How I went from zero experience in web development, to cloning Facebook Messenger and building a full-fledged chat app"
 tags: [typescript, javascript, react, graphql]
 publishedAt: '2021-04-28'
-banner: "/static/images/i-built-a-chat-app-using-react-and-graphql/banner.jpg"
+banner: "/static/images/blog/i-built-a-chat-app-using-react-and-graphql/banner.jpg"
 ---
 
 #### TLDR

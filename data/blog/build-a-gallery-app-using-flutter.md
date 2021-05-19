@@ -3,7 +3,7 @@ title: "Build a gallery app using Flutter"
 summary: "How to build a gallery app using Flutter, to display all the photos and videos on your phone."
 tags: [flutter, dart]
 publishedAt: '2020-11-01'
-banner: "/static/images/build-a-gallery-app-using-flutter/banner.png"
+banner: "/static/images/blog/build-a-gallery-app-using-flutter/banner.png"
 ---
 
 At some point, we all needed to access photos in the phone's storage, either to upload it to a backend, or just to display it in a Widget. Either way, the only choice we had was to use the famous [image_picker][image_picker] plugin or some other plugin that uses the same approach.

@@ -3,7 +3,7 @@ title: "The Repository pattern with Typescript"
 summary: "Repositories are used to encapsulate the logic used to access data sources. Learn more about this concept, and how to implement the it using Typescript"
 tags: [typescript, testing]
 publishedAt: '2021-02-15'
-banner: "/static/images/the-repository-pattern-with-typescript/banner.png"
+banner: "/static/images/blog/the-repository-pattern-with-typescript/banner.png"
 ---
 
 Hi 👋

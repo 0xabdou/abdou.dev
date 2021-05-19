@@ -3,7 +3,7 @@ import ArticleItem from "../components/article-item";
 import {ArticleMeta, getAllArticles} from "../lib/blog";
 import {GetStaticProps, InferGetStaticPropsType} from "next";
 import Link from "next/link";
-import TwitterCard from "../components/twitter-card";
+import SocialSharePreview from "../components/social-share-preview";
 
 const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const title = "Abdou Ouahib | Software Engineer 🚀";
@@ -20,8 +20,8 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           content="software engineer, software developer, web developer,
             mobile developer, portfolio, blog, React, Next.js, Flutter, GraphQL"
         />
-        <TwitterCard
-          image="/static/images/card.png"
+        <SocialSharePreview
+          image="/static/images/social-share-preview/home.png"
           title={title}
           description={description}
         />
