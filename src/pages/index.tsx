@@ -7,9 +7,9 @@ import SocialSharePreview from "../components/social-share-preview";
 
 const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const title = "Abdou Ouahib | Software Engineer 🚀";
-  const description = "A type-safe software engineer and tech writer, building"
-    + "apps by day, playing chess by night. I work mainly with React"
-    + "and Next.js, but can Flutter just as good.";
+  const description = "A type-safe software engineer and tech writer. "
+    + "I work mainly with React and Next.js, but can Flutter just as good. "
+    + "I also play chess occasionally.";
   return (
     <div className="flex flex-col w-full max-w-4xl">
       <Head>
