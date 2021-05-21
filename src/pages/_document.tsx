@@ -17,11 +17,11 @@ class MyDocument extends Document {
       <Html lang="en-US" className="dark">
         <Head>
           <Favicon/>
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          <script
+            src="https://kit.fontawesome.com/49d981a984.js"
+            crossOrigin="anonymous"
+            async
           />
-          <script src="https://use.fontawesome.com/7b71609399.js"/>
         </Head>
         <body
           className="h-screen max-h-screen overflow-y-auto bg-old dark:bg-black"
