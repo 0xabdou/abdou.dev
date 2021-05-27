@@ -1,15 +1,13 @@
 import Link from "next/link";
 import {ArticleMeta} from "../lib/blog";
-import useFormattedDate from "../shared/use-formatted-date";
+import DateReadingTimeViews from "./date-reading-time-views";
 
 type ArticleItemProps = {
   article: ArticleMeta
 };
 
 const ArticleItem = (props: ArticleItemProps) => {
-  const date = useFormattedDate(new Date(props.article.publishedAt));
-  const {title, summary, tags, readTime, slug} = props.article;
-  console.log(props.article);
+  const {title, summary, tags, slug} = props.article;
   return (
     <div className="px-4 py-3 bg-white dark:bg-knight rounded">
       <h3
@@ -37,8 +35,7 @@ const ArticleItem = (props: ArticleItemProps) => {
           className="flex flex-grow justify-end mb-1
             text-gray-500 dark:text-gray-400 text-right text-xs"
         >
-          <time dateTime={props.article.publishedAt}>{date}</time>
-          &nbsp;- {readTime} min read
+          <DateReadingTimeViews article={props.article}/>
         </div>
       </div>
     </div>

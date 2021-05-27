@@ -7,9 +7,10 @@ import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 import tags, {Tag} from "../../../data/tags/tags";
 import Link from "next/link";
 import ThemeContext from "../../shared/theme-context";
-import useFormattedDate from "../../shared/use-formatted-date";
 import Head from "next/head";
 import SocialSharePreview from "../../components/social-share-preview";
+import {useEffect} from "react";
+import DateReadingTimeViews from "../../components/date-reading-time-views";
 
 const baseHeaderStyle = "font-extrabold text-black dark:text-white my-2 leading-9";
 const components: Components = {
@@ -112,7 +113,12 @@ const components: Components = {
 };
 
 const BlogArticle = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const date = useFormattedDate(new Date(props.meta.publishedAt));
+  useEffect(() => {
+    void fetch("/api/views", {
+      method: "PUT",
+      body: JSON.stringify({slug: props.meta.slug})
+    });
+  }, []);
 
   return (
     <div className="flex flex-col max-w-full md:max-w-2xl lg:max-w-screen-md
@@ -140,10 +146,7 @@ const BlogArticle = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
               <TagChip {...tags[tag]} key={tag}/>
             ))}
           </div>
-          <div className="flex text-gray-500 dark:text-gray-400 text-sm">
-            <time dateTime={props.meta.publishedAt}>{date}</time>
-            &nbsp;- {props.meta.readTime} minutes read
-          </div>
+          <DateReadingTimeViews article={props.meta}/>
         </div>
       </header>
       <article className="px-4 md:px-12">
