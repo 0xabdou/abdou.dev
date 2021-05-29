@@ -29,10 +29,7 @@ const ArticlesWithSearch = (props: ArticlesWithSearchProps) => {
         <title>{props.title}</title>
         <meta name="description" content={props.description}/>
       </Head>
-      <header className="flex flex-col items-start py-4 px-2
-        text-gray-500 dark:text-gray-400 text-md">
-        {props.header}
-      </header>
+      {props.header}
       <input
         className="bg-white dark:bg-knight outline-none rounded py-2 px-4 mb-5
           text-black dark:text-white"

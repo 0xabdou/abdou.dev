@@ -1,11 +1,22 @@
 import Head from "next/head";
 import SocialSharePreview from "../../components/social-share-preview";
+import {getAllProjects, ProjectMeta} from "../../lib/projects";
+import {GetStaticProps} from "next";
+import ProjectItem from "../../components/project-item";
+import TitleWithDescription from "../../components/title-with-description";
 
-const Projects = () => {
+type ProjectsProps = {
+  projects: ProjectMeta[]
+}
+
+const Projects = ({projects}: ProjectsProps) => {
   const title = "Projects | Abdou Ouahib";
   const description = "Here are all the relevant projects I've worked on";
   return (
-    <div className="flex items-center text-black: dark:text-white">
+    <div
+      className="flex flex-col space-y-1
+        w-full max-w-screen-md text-black: dark:text-white"
+    >
       <Head>
         <title>{title}</title>
         <meta
@@ -18,9 +29,20 @@ const Projects = () => {
         title={title}
         description={description}
       />
-      Coming soon..
+      <header>
+        <TitleWithDescription title="Projects" description={description}/>
+      </header>
+      {Array.from({length: 20}, () => projects[0]).map(project => (
+        <ProjectItem project={project}/>))}
     </div>
   );
+};
+
+export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
+  const projects = getAllProjects().map(p => p.meta);
+  return {
+    props: {projects}
+  };
 };
 
 export default Projects;
