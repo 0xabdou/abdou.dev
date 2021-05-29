@@ -108,7 +108,7 @@ type HeaderLinkProps = {
   label?: string,
 };
 
-const HeaderLink = (props: HeaderLinkProps) => {
+export const HeaderLink = (props: HeaderLinkProps) => {
   const className = `flex items-center
     text-sm text-gray-500 dark:text-gray-400 
     ${props.href && "hover:text-mineta-dark dark:hover:text-mineta"}
