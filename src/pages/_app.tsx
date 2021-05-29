@@ -33,7 +33,7 @@ const MyApp = ({Component, pageProps}: AppProps) => {
 
   return (
     <ThemeContext.Provider value={{theme, toggleTheme}}>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full text-black dark:text-white">
         <header className="fixed top-0 w-full z-40">
           <TopBar onMenuClicked={() => setOpen(true)}/>
         </header>

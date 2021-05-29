@@ -1,11 +1,20 @@
 import Head from "next/head";
 import ArticleItem from "../components/article-item";
 import {ArticleMeta, getAllArticles} from "../lib/blog";
-import {GetStaticProps, InferGetStaticPropsType} from "next";
+import {GetStaticProps} from "next";
 import Link from "next/link";
 import SocialSharePreview from "../components/social-share-preview";
+import HeaderLink from "../components/header-link";
+import {ReactNode} from "react";
+import {getAllProjects, ProjectMeta} from "../lib/projects";
+import ProjectItem from "../components/project-item";
 
-const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
+type HomeProps = {
+  articles: ArticleMeta[],
+  projects: ProjectMeta[]
+};
+
+const Home = (props: HomeProps) => {
   const title = "Abdou Ouahib | Software Engineer 🚀";
   const description = "A type-safe software engineer and tech writer. "
     + "I work mainly with React and Next.js, but can Flutter just as good. "
@@ -67,81 +76,78 @@ const Home = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           />
         </div>
       </div>
-      <div className="flex flex-col bg-white dark:bg-knight mt-12 mb-12
-        divide-y divide-solid divide-black divide-opacity-10
-        dark:divide-white dark:divide-opacity-10 rounded"
+      <Section
+        className="mt-12"
+        label="Recent articles"
+        moreHref="/blog"
       >
-        <div className="flex items-center justify-between py-3 px-4">
-          <h2
-            className="text-black dark:text-white text-2xl font-bold "
-          >
-            Recent articles
-          </h2>
-          <Link href={"/blog"}>
-            <a className="hidden sm:inline text-gray-500 dark:text-gray-400
-             hover:text-mineta-dark dark:hover:text-mineta">
-              Show more
-            </a>
-          </Link>
-        </div>
         {
           props.articles.map(article => (
             <ArticleItem article={article} key={article.slug}/>
           ))
         }
-        <Link href={"/blog"}>
-          <a className="sm:hidden p-4 text-center
-            text-gray-500 dark:text-gray-400
-            hover:text-mineta-dark dark:hover:text-mineta"
-          >
-            Show more
-          </a>
-        </Link>
-      </div>
+      </Section>
+      <Section
+        className="mt-3 mb-12"
+        label="Recent projects"
+        moreHref="/projects"
+      >
+        {
+          props.projects.map(project => (
+            <div className="p-3">
+              <ProjectItem project={project} key={project.slug}/>
+            </div>
+          ))
+        }
+      </Section>
     </div>
   );
 };
 
-type HeaderLinkProps = {
-  icon: string,
-  href?: string,
-  label?: string,
-};
+type SectionProps = {
+  label: string,
+  children: ReactNode,
+  moreHref: string,
+  className?: string,
+}
 
-export const HeaderLink = (props: HeaderLinkProps) => {
-  const className = `flex items-center
-    text-sm text-gray-500 dark:text-gray-400 
-    ${props.href && "hover:text-mineta-dark dark:hover:text-mineta"}
-    pr-8 pt-2 pb-2`;
-  const children = (
-    <>
-      <i className={`${props.icon} mr-2 text-2xl`}/>
-      {props.label}
-    </>
-  );
-  if (props.href) {
-    return (
-      <a
-        className={className}
-        href={props.href}
-        rel="noreferrer"
-        target="_blank"
-      >
-        {children}
-      </a>
-    );
-  }
+const Section = ({label, children, moreHref, className = ""}: SectionProps) => {
   return (
-    <span className={className}>
+    <div className={`flex flex-col bg-white dark:bg-knight
+        divide-y divide-solid divide-black divide-opacity-10
+        dark:divide-white dark:divide-opacity-10 rounded ${className}`}
+    >
+      <div className="flex items-center justify-between py-3 px-4">
+        <h2
+          className="text-black dark:text-white text-2xl font-bold "
+        >
+          {label}
+        </h2>
+        <Link href={moreHref}>
+          <a className="hidden sm:inline text-gray-500 dark:text-gray-400
+             hover:text-mineta-dark dark:hover:text-mineta">
+            Show more
+          </a>
+        </Link>
+      </div>
       {children}
-    </span>
+      <Link href={moreHref}>
+        <a className="sm:hidden p-4 text-center
+            text-gray-500 dark:text-gray-400
+            hover:text-mineta-dark dark:hover:text-mineta"
+        >
+          Show more
+        </a>
+      </Link>
+    </div>
   );
 };
 
-export const getStaticProps: GetStaticProps<{ articles: ArticleMeta[] }> = async () => {
-  const articles = getAllArticles().slice(0, 2);
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  const articles = getAllArticles().slice(0, 2).map(a => a.meta);
+  const projects = getAllProjects().slice(0, 2).map(p => p.meta);
   return {
-    props: {articles: articles.map(a => a.meta)}
+    props: {articles, projects}
   };
 };
 

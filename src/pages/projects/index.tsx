@@ -11,7 +11,7 @@ type ProjectsProps = {
 
 const Projects = ({projects}: ProjectsProps) => {
   const title = "Projects | Abdou Ouahib";
-  const description = "Here are all the relevant projects I've worked on";
+  const description = "Here you can find some of the most relevant projects I've worked on.";
   return (
     <div
       className="flex flex-col space-y-1
@@ -32,8 +32,7 @@ const Projects = ({projects}: ProjectsProps) => {
       <header>
         <TitleWithDescription title="Projects" description={description}/>
       </header>
-      {Array.from({length: 20}, () => projects[0]).map(project => (
-        <ProjectItem project={project}/>))}
+      {projects.map(project => (<ProjectItem project={project}/>))}
     </div>
   );
 };

@@ -2,12 +2,13 @@ import {ProjectMeta} from "../lib/projects";
 import Link from "next/link";
 
 type ProjectItemProps = {
-  project: ProjectMeta
+  project: ProjectMeta,
 };
 
 const ProjectItem = ({project}: ProjectItemProps) => {
   return (
-    <div className="flex bg-white dark:bg-knight rounded h-36 md:h-32">
+    <div className="flex bg-white dark:bg-knight rounded h-36 md:h-32"
+    >
       <Link href={`/projects/${project.slug}`}>
         <img
           className="w-36 h-36 md:w-32 md:h-32 rounded-l cursor-pointer"

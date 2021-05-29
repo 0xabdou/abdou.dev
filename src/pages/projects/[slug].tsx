@@ -1,7 +1,9 @@
 import {getAllProjects, Project} from "../../lib/projects";
 import {GetStaticPaths, GetStaticProps} from "next";
 import MarkdownArticle from "../../components/markdown-article";
-import {HeaderLink} from "../index";
+import HeaderLink from "../../components/header-link";
+import Head from "next/head";
+import SocialSharePreview from "../../components/social-share-preview";
 
 type ProjectPageProps = {
   project: Project
@@ -11,6 +13,15 @@ const ProjectPage = ({project}: ProjectPageProps) => {
   return (
     <div className="flex flex-col w-full max-w-full md:max-w-2xl lg:max-w-screen-md
       md:mx-4 mb-52 bg-white dark:bg-knight text-lg rounded-b-lg">
+      <Head>
+        <title>{"Projects | " + project.meta.name}</title>
+        <meta name="description" content={project.meta.description}/>
+      </Head>
+      <SocialSharePreview
+        image={project.meta.banner}
+        title={project.meta.name}
+        description={project.meta.description}
+      />
       <header className="pb-5">
         <div className="w-full aspect-w-16 aspect-h-7 object-cover">
           <img src={project.meta.banner} alt="Article banner"/>
