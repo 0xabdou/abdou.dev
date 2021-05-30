@@ -11,7 +11,7 @@ const HeaderLink = (props: HeaderLinkProps) => {
     pr-8 pt-2 pb-2`;
   const children = (
     <>
-      <i className={`${props.icon} mr-2 text-2xl h-8 w-6`}>&nbsp;</i>
+      <i className={`${props.icon} mr-2 text-2xl h-8 w-6 min-w-6`}/>
       {props.label}
     </>
   );
