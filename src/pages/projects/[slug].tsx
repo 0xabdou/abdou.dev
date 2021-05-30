@@ -27,7 +27,7 @@ const ProjectPage = ({project}: ProjectPageProps) => {
         <Image
           src={project.meta.banner}
           alt="Project banner"
-          layout="responsive"
+          layout="intrinsic"
           height={420}
           width={1000}
         />

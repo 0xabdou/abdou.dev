@@ -35,7 +35,7 @@ const BlogPage = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         <Image
           src={props.meta.banner}
           alt="Article banner"
-          layout="responsive"
+          layout="intrinsic"
           height={420}
           width={1000}
         />
