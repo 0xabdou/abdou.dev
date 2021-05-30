@@ -4,6 +4,7 @@ import MarkdownArticle from "../../components/markdown-article";
 import HeaderLink from "../../components/header-link";
 import Head from "next/head";
 import SocialSharePreview from "../../components/social-share-preview";
+import Image from "next/image";
 
 type ProjectPageProps = {
   project: Project
@@ -23,9 +24,13 @@ const ProjectPage = ({project}: ProjectPageProps) => {
         description={project.meta.description}
       />
       <header className="pb-5">
-        <div className="w-full aspect-w-16 aspect-h-7 object-cover">
-          <img src={project.meta.banner} alt="Article banner"/>
-        </div>
+        <Image
+          src={project.meta.banner}
+          alt="Project banner"
+          layout="responsive"
+          height={420}
+          width={1000}
+        />
         <div className="px-4 md:px-12 pt-4">
           <h1
             className="font-extrabold text-black dark:text-white my-2 leading-9 text-4xl">

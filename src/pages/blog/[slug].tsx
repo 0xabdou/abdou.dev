@@ -7,6 +7,7 @@ import SocialSharePreview from "../../components/social-share-preview";
 import {useEffect} from "react";
 import DateReadingTimeViews from "../../components/date-reading-time-views";
 import MarkdownArticle from "../../components/markdown-article";
+import Image from "next/image";
 
 
 const BlogPage = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
@@ -31,9 +32,13 @@ const BlogPage = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         description={props.meta.summary}
       />
       <header className="pb-5">
-        <div className="w-full aspect-w-16 aspect-h-7 object-cover">
-          <img src={props.meta.banner} alt="Article banner"/>
-        </div>
+        <Image
+          src={props.meta.banner}
+          alt="Article banner"
+          layout="responsive"
+          height={420}
+          width={1000}
+        />
         <div className="px-4 md:px-12 pt-4">
           <h1
             className="font-extrabold text-black dark:text-white my-2 leading-9 text-4xl">
