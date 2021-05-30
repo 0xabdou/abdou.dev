@@ -178,7 +178,7 @@ Widget build(BuildContext context) {
 ```
 Run the app, open the gallery, and if you didn't make any mistakes, the displayed number should be greater than 0 (Unless you have no photos/videos on your phone :p), something like this:
 
-![screenshot_1][screenshot_1]
+![Screenshot][screenshot-1]
 
 Good job, you're halfway there, all we need to do now is display the fetched assets.
 
@@ -444,14 +444,16 @@ Re-run the app again, now click on a video thumbnail, and you should navigate to
 # That's a wrap
 Congrats! We're done with this tutorial. You just built a Gallery app using Flutter. You can apply this knowledge in a lot of use-cases. For example, if you're making a chat app, you can directly display photos and videos on the chat screen, and the user will be able to send them directly without quitting the app (Below are screenshots of Whatsapp and Messenger apps).
 
-![messenger_whatsapp_screenshots][messenger_whatsapp_screenshots]
+![Screenshots of chat apps][screenshot-2]
+
 You can find the final code in this [github repo][github_repo]. If you have any questions, just ask them in the comments and I'll try to help. Bye Bye!
 
-![peace](https://media.giphy.com/media/Ru9sjtZ09XOEg/giphy.gif)
+![peace][peace-out]
 
 [image_picker]: https://pub.dev/packages/image_picker
 [photo_manager]: https://pub.dev/packages/photo_manager
-[final_product]: https://dev-to-uploads.s3.amazonaws.com/i/h901zszai9utfdm0zdjn.gif
-[screenshot_1]: https://dev-to-uploads.s3.amazonaws.com/i/l6gcfk2aeqs2vcf03pvn.jpg
-[messenger_whatsapp_screenshots]: https://dev-to-uploads.s3.amazonaws.com/i/1yzmii8moa14tn86blen.jpg
+[final_product]: /static/images/blog/build-a-gallery-app-using-flutter/final-product.mp4
+[screenshot-1]: /static/images/blog/build-a-gallery-app-using-flutter/screenshot1.jpeg
+[screenshot-2]:/static/images/blog/build-a-gallery-app-using-flutter/screenshot2.jpeg
 [github_repo]: https://github.com/aouahib/photo_manager_demo
+[peace-out]:/static/images/blog/build-a-gallery-app-using-flutter/peace-out.mp4

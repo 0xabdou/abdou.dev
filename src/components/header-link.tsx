@@ -20,7 +20,7 @@ const HeaderLink = (props: HeaderLinkProps) => {
       <a
         className={className}
         href={props.href}
-        rel="noreferrer"
+        rel="noopener noreferrer"
         target="_blank"
       >
         {children}

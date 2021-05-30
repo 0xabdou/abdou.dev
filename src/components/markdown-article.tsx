@@ -104,11 +104,10 @@ const components: Components = {
   img({node, src, ...props}) {
     // The alt attribute should come from the markdown
     const source = src as string;
-    console.log("IMG SRC: ", source);
     // Maybe add more extensions
     if (source.endsWith(".mp4")) {
       return <video
-        className="h-96 mx-auto"
+        className="mx-auto"
         src={source}
         playsInline
         autoPlay
@@ -117,7 +116,7 @@ const components: Components = {
         controls={false}
       />;
     }
-    return <img src={source} alt="" {...props} className="mx-auto my-3"/>;
+    return <img src={source} alt=""{...props} className="mx-auto my-3"/>;
   },
   a({node, ...props}) {
     return (
@@ -125,6 +124,7 @@ const components: Components = {
          target="_blank"
          className="underline text-mineta-dark hover:text-opacity-60
            dark:text-mineta dark:hover:text-opacity-80"
+         rel="noopener noreferrer"
       />
     );
   }

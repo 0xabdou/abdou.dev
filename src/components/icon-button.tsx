@@ -15,7 +15,7 @@ const IconButton = ({icon, onClick, ...props}: IconButtonProps) => {
       onClick={onClick}
       {...props}
     >
-      <i className={`${icon} text-black dark:text-white text-xl`}/>
+      <i className={`${icon} text-black dark:text-white text-xl`} aria-hidden/>
     </button>
   );
 };
