@@ -7,8 +7,8 @@ type DateReadingTimeViewsProps = {
 }
 
 const DateReadingTimeViews = ({article}: DateReadingTimeViewsProps) => {
-  const {data} = useSWR(`/api/views?slug=${article.slug}`);
-  const views = data?.views ?? "-";
+  const {data} = useSWR("/api/views");
+  const views = data?.views[article.slug] ?? "-";
   const date = useFormattedDate(new Date(article.publishedAt));
 
   return (

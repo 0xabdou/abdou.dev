@@ -12,10 +12,7 @@ import Image from "next/image";
 
 const BlogPage = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   useEffect(() => {
-    void fetch("/api/views", {
-      method: "PUT",
-      body: JSON.stringify({slug: props.meta.slug})
-    });
+    void fetch(`/api/views/${props.meta.slug}`);
   }, []);
 
   return (
