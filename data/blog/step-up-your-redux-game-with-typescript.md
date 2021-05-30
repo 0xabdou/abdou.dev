@@ -3,7 +3,7 @@ title: "Step up your Redux game with Typescript"
 summary: "Learn how to make your Redux strongly typed, so you can benefit from code completion, and all the other good stuff that comes with Typescript's type system"
 tags: [typescript, redux, react]
 publishedAt: '2021-02-21'
-banner: "/static/images/blog/step-up-your-redux-game-with-typescript/banner.jpg"
+banner: "/static/images/blog/step-up-your-redux-game-with-typescript/banner.png"
 ---
 
 Hi 👋
@@ -26,7 +26,7 @@ We are going to build a small React app that only has an authentication feature.
 
 Here's a sneak peak of the final product.
 
-![end result][end-result-gif]
+![final product][final-product]
 
 ## Getting started
 
@@ -230,7 +230,7 @@ const storeExtraArg = {
 export type StoreExtraArg = typeof storeExtraArg;
 ```
 
-Nothing complicated. If you want some inspiration on how to instantiate multiple dependencies, you can take a look at this [code][service-locator]. Otherwise, let's actually inject this into the store, go to `/src/app/store.ts`, and modify your `createStore` function:
+Now let's actually inject this into the store, go to `/src/app/store.ts`, and modify your `createStore` function:
 
 ```typescript
 // Add getDefaultMiddleware to the existing import
@@ -583,11 +583,9 @@ I hope you had a good read, see you in the next 👋.
 
 [redux-thunk]:https://github.com/reduxjs/redux-thunk#redux-thunk
 
-[service-locator]:https://github.com/aouahib/very_good_chat_web/blob/main/src/injection/service-locator.ts
-
 [repository-article]:https://dev.to/aouahib/the-repository-pattern-with-typescript-3ibn
 
-[end-result-gif]:https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nhbw8igi9cgcjnfaah4b.gif
+[final-product]:/static/images/blog/step-up-your-redux-game-with-typescript/final-product.mp4
 
 [auto-complete-screen-shot]:https://dev-to-uploads.s3.amazonaws.com/uploads/articles/j5b2f6vkra4a54m465zz.png
 

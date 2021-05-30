@@ -101,9 +101,23 @@ const components: Components = {
   p({node, ...props}) {
     return <p {...props} className="text-black dark:text-white pb-4 "/>;
   },
-  img({node, ...props}) {
+  img({node, src, ...props}) {
     // The alt attribute should come from the markdown
-    return <img alt="" {...props} className="mx-auto my-3"/>;
+    const source = src as string;
+    console.log("IMG SRC: ", source);
+    // Maybe add more extensions
+    if (source.endsWith(".mp4")) {
+      return <video
+        className="h-96 mx-auto"
+        src={source}
+        playsInline
+        autoPlay
+        muted
+        loop
+        controls={false}
+      />;
+    }
+    return <img src={source} alt="" {...props} className="mx-auto my-3"/>;
   },
   a({node, ...props}) {
     return (

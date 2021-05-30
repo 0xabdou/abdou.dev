@@ -1,6 +1,6 @@
 ---
 name: "Very Good Chat"
-description: "Facebook Messenger clone, a full-fledged chat application with all the main features: authentication, profiles, friends, real-time chat... Built with react and GraphQL"
+description: "Facebook Messenger clone, a full-fledged chat application with all the main features: authentication, profiles, friends, real-time chat... Built with react and GraphQL."
 banner: "/static/images/projects/very-good-chat/banner.png"
 logo: "/static/images/projects/very-good-chat/logo.png"
 date: "2021-04-28"
@@ -14,7 +14,7 @@ A full-fledged chat application, which mimics the behavior of Facebook Messenger
 ## Frontend
 
 - **React**
-- **Redux**: I'm building a full fledged chat app after all. I will need a solid state management solution.
+- **Redux**
 - **MaterialUI** for components/styling
 - **Apollo client** for GraphQL
 
@@ -23,6 +23,6 @@ A full-fledged chat application, which mimics the behavior of Facebook Messenger
 - **Node.js** and **Express**.
 - **Apollo server** for GraphQL
 - **TypeGraphQL**:  for building GraphQL APis
-- **PostgreSQL** in combination with **Prisma** (The next generation ORM, very cool stuff) for the database.
+- **PostgreSQL** in combination with **Prisma** for the database.
 
 Everything is fully typed thanks to Typescript.
