@@ -32,7 +32,9 @@ const Projects = ({projects}: ProjectsProps) => {
       <header>
         <TitleWithDescription title="Projects" description={description}/>
       </header>
-      {projects.map(project => (<ProjectItem project={project}/>))}
+      {projects.map(project => (
+        <ProjectItem project={project} key={project.slug}/>
+      ))}
     </div>
   );
 };

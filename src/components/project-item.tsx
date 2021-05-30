@@ -7,24 +7,24 @@ type ProjectItemProps = {
 
 const ProjectItem = ({project}: ProjectItemProps) => {
   return (
-    <div className="flex bg-white dark:bg-knight rounded h-36 md:h-32"
+    <div className="flex items-center bg-white dark:bg-knight rounded h-36"
     >
       <Link href={`/projects/${project.slug}`}>
         <img
-          className="w-36 h-36 md:w-32 md:h-32 rounded-l cursor-pointer"
+          className="w-32 h-36 sm:w-36 rounded-l cursor-pointer object-cover"
           src={project.logo}
         />
       </Link>
       <div className="flex flex-col p-3 flex-grow w-full">
         <Link href={`/projects/${project.slug}`}>
           <a>
-            <h2 className="text-markup-h2 font-bold
+            <h2 className="text-markup-h3 sm:text-markup-h2 font-bold line-clamp-1
               hover:text-mineta-dark dark:hover:text-mineta">
               {project.name}
             </h2>
           </a>
         </Link>
-        <p className="line-clamp-3 md:line-clamp-2">
+        <p className="line-clamp-3">
           {project.description}
         </p>
       </div>
