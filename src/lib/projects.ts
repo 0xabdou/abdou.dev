@@ -9,8 +9,9 @@ export type ProjectMeta = {
   banner: string,
   logo: string,
   date: string
-  github?: string,
-  demo?: string,
+  github: string | null,
+  demo: string | null,
+  googlePlay: string | null
 }
 
 export type Project = {
@@ -35,8 +36,9 @@ export const getAllProjects = (): Project[] => {
           banner: data.banner,
           logo: data.logo,
           date: data.date,
-          github: data.github,
-          demo: data.demo
+          github: data.github ?? null,
+          demo: data.demo ?? null,
+          googlePlay: data.googlePlay ?? null,
         }
       };
     }).sort((a, b) => {

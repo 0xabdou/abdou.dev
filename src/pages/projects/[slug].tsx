@@ -49,6 +49,12 @@ const ProjectPage = ({project}: ProjectPageProps) => {
               label="Live demo"
               href={project.meta.demo}
             />}
+            {project.meta.googlePlay &&
+            <HeaderLink
+              icon="fab fa-google-play"
+              label="Google Play"
+              href={project.meta.googlePlay}
+            />}
           </div>
 
         </div>
