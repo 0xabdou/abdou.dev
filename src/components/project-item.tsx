@@ -13,6 +13,9 @@ const ProjectItem = ({project}: ProjectItemProps) => {
         <img
           className="w-32 h-36 sm:w-36 rounded-l cursor-pointer object-cover"
           src={project.logo}
+          alt="Project logo"
+          width="150"
+          height="150"
         />
       </Link>
       <div className="flex flex-col p-3 flex-grow w-full">

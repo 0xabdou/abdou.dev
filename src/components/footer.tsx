@@ -18,6 +18,8 @@ const Footer = () => {
         className="inline h-8 w-8"
         src={"/static/icons/heart.svg"}
         alt="love"
+        width="32"
+        height="32"
       />
     </footer>
   );
