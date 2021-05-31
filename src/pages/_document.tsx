@@ -24,7 +24,7 @@ class MyDocument extends Document {
           />
         </Head>
         <body
-          className="h-screen max-h-screen overflow-y-auto bg-old dark:bg-black"
+          className="h-screen max-h-screen overflow-y-auto bg-old dark:bg-knight-dark"
         >
         <Main/>
         <NextScript/>

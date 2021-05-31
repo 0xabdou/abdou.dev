@@ -5,14 +5,16 @@ module.exports = {
     extend: {
       colors: {
         knight: {
-          DEFAULT: "#1a2634"
+          DEFAULT: "#1a2634",
+          dark: "#0d1219"
         },
         mineta: {
           DEFAULT: "#7b78ff",
           dark: "#1827ce",
         },
         old: {
-          DEFAULT: "#eef0f1"
+          DEFAULT: "#eef0f1",
+          dark: "#D2D6DB"
         }
       },
       boxShadow: {
