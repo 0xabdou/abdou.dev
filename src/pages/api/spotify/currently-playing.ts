@@ -14,19 +14,16 @@ const handler: NextApiHandler = async (req, res) => {
       })
     }
   );
-  //console.log("RESPONSE: ", response1);
   const {access_token} = await response1.json();
   const response = await fetch(
     url,
     {
       headers: {
         "Authorization": `Bearer ${access_token}`,
-        "Accept": "application/json",
-        "Content-Type": "application/json",
       },
     }
   );
-  console.log("RESP: ", response);
+  console.log("RESP: ", await response.text());
   const json = await response.json();
   res.status(200).json(json);
 };

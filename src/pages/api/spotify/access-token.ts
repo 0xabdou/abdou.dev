@@ -23,6 +23,7 @@ const handler: NextApiHandler = async (req, res) => {
       }
     );
     const {access_token} = await response.json();
+    console.log("GOT ACCESS TOKEN: ", access_token);
     return res.status(200).json({access_token});
   }
   res
