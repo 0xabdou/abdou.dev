@@ -86,6 +86,12 @@ const Drawer = (props: DrawerProps) => {
             href="/tags"
             onClick={onItemClicked}
           />
+          <MenuItem
+            icon="/static/icons/spotify.svg"
+            label="Spotify"
+            href="/spotify"
+            onClick={onItemClicked}
+          />
         </div>
       </div>
       <div
