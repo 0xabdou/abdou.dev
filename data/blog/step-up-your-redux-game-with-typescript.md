@@ -24,7 +24,7 @@ I answered all these questions throughout this article, enjoy!
 
 We are going to build a small React app that only has an authentication feature. Meaning that you can login, view the current user, and logout. This is enough to cover most of redux important concepts. There will be no backend, only mock data. If you want, you can later replace the mocks with a real API, and the Redux part will still work perfectly.
 
-Here's a sneak peak of the final product.
+Here's a sneak peek of the final product.
 
 ![final product][final-product]
 
