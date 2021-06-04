@@ -1,28 +1,25 @@
 import {NextApiHandler} from "next";
-import {getAccessToken} from "./access-token";
-import {getRecentlyPlayed} from "./recently-played";
+import {
+  getCurrentlyPlaying,
+  getRecentlyPlayed,
+  isSpotifyError
+} from "../../../lib/spotify";
 
 const handler: NextApiHandler = async (_, res) => {
-  const url = "https://api.spotify.com/v1/me/player/currently-playing";
-  const access_token = await getAccessToken();
-  const response = await fetch(
-    url,
-    {headers: {"Authorization": `Bearer ${access_token}`}}
-  );
-  if (response.status == 204) {
-    const recentlyPlayed = await getRecentlyPlayed();
+  const response = await getCurrentlyPlaying();
+  if (isSpotifyError(response)) {
+    if (response.status == 204) {
+      // No content, user has no Spotify app running
+      // Try to get the recently played track instead
+      const response = await getRecentlyPlayed();
+      if (isSpotifyError(response)) {
+        return res.status(response.status).json({error: response.error});
+      }
+      return res.status(200).json(response);
+    }
+    return res.status(response.status).json({error: response.error});
   }
-  if (response.status != 200) {
-    const error = {
-      status: response.status,
-      statusText: response.statusText,
-      error: await response.text(),
-    };
-    console.log("ERROR: ", error);
-    return res.status(response.status).json(error);
-  }
-  const json = await response.json();
-  res.status(200).json(json);
+  res.status(200).json(response);
 };
 
 export default handler;

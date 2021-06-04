@@ -1,4 +1,4 @@
-import {parseTrack, Track} from "../lib/spotify";
+import {Track} from "../lib/spotify";
 import useTimeAgo from "../shared/use-time-ago";
 import useSWR from "swr";
 import styled from "styled-components";
@@ -6,26 +6,30 @@ import {ThemeContextType, useTheme} from "../shared/theme-context";
 import {ReactNode} from "react";
 
 const SpotifyCurrentlyPlaying = () => {
-  const {data} = useSWR(
+  const {data: track} = useSWR(
     "/api/spotify/currently-playing",
     {
       refreshInterval: 10000,
-      compare: (a, b) =>
+      compare: (a: Track | undefined, b: Track | undefined) =>
         !!a && !!b
-        && a.item.id == b.item.id
-        && a.is_playing == b.is_playing,
+        && a.id == b.id
+        && a.isPlaying == b.isPlaying,
     }
   );
-  const track = data && parseTrack(data);
+
   if (track) return <TrackCard track={track}/>;
   return <TrackLoadingCard/>;
 };
 
+const cardContainerClass = "relative w-full max-w-lg mx-auto rounded-2xl " +
+  "shadow-md bg-white dark:bg-knight px-4 py-2";
+const cardImageClass = "w-24 h-24 sm:w-28 sm:h-28 rounded-xl mr-4";
+const cardTopInfoClass = "h-6 font-bold text-sm mb-1";
+
 const TrackCard = ({track}: { track: Track }) => {
   const ago = useTimeAgo(track?.date);
   return (
-    <div className="relative w-full max-w-lg mx-auto rounded-2xl
-       shadow-md bg-white dark:bg-knight px-4 py-2"
+    <div className={cardContainerClass}
     >
       {track.isPlaying && <Bars/>}
       {!track.isPlaying &&
@@ -35,13 +39,13 @@ const TrackCard = ({track}: { track: Track }) => {
       >
         {ago}
       </time>}
-      <div className="font-bold text-sm mb-2">
+      <div className={cardTopInfoClass}>
         {track.isPlaying && "CURRENTLY LISTENING TO"}
         {!track.isPlaying && "LAST LISTENED TO"}
       </div>
-      <div className="flex items-center h:24 sm:h-28">
+      <div className="flex items-center">
         <img
-          className="w-24 h-24 sm:w-28 sm:h-28 rounded-xl mr-4"
+          className={cardImageClass}
           src={track.imageURL}
           alt="Track cover"
           height={300}
@@ -77,11 +81,24 @@ const TrackCard = ({track}: { track: Track }) => {
 };
 
 const TrackLoadingCard = () => {
+  const colorClass = "bg-black dark:bg-white bg-opacity-10 dark:bg-opacity-10 animate-pulse";
   return (
-    <div/>
+    <div className={cardContainerClass}>
+      <div className={cardTopInfoClass}>
+        <div className={`${colorClass} h-3 w-44 rounded`}/>
+      </div>
+      <div className="flex items-center">
+        <div className={`${cardImageClass} ${colorClass}`}/>
+        <div className="flex flex-col justify-center">
+          <div className={`${colorClass} h-6 my-1 w-44`}/>
+          <div className={`${colorClass} h-4 my-1 w-32`}/>
+        </div>
+      </div>
+    </div>
   );
 };
-const XD = styled.div`
+
+const SpotifyBarContainer = styled.div`
   position: absolute;
   display: flex;
   align-items: flex-end;
@@ -102,7 +119,7 @@ const XD = styled.div`
   }
 `;
 
-const LMAO = styled.div<{ speed: number, theme: ThemeContextType["theme"] }>`
+const SpotifyBar = styled.div<{ speed: number, theme: ThemeContextType["theme"] }>`
   background: ${props => props.theme == "dark" ? "white" : "black"};
   width: 2px;
   margin: 1px;
@@ -115,14 +132,14 @@ const Bars = () => {
   const children: ReactNode[] = [];
   for (let i = 0; i < count; i++) {
     children.push(
-      <LMAO
+      <SpotifyBar
         speed={0.5 + i * 0.2}
         theme={theme}
         key={`spotify-bar-${i}`}
       />
     );
   }
-  return <XD>{children}</XD>;
+  return <SpotifyBarContainer>{children}</SpotifyBarContainer>;
 };
 
 export default SpotifyCurrentlyPlaying;
