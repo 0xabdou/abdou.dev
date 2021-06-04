@@ -5,6 +5,7 @@ const handler: NextApiHandler = (req, res) => {
   const redirect_uri = "http://localhost:3000/api/temp-spotify/callback/";
   const scope = [
     "user-read-currently-playing",
+    "user-read-recently-played",
     "user-read-playback-state"
   ].join(" ");
   const params = new URLSearchParams({
