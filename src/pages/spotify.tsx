@@ -1,6 +1,7 @@
 import Head from "next/head";
 import TitleWithDescription from "../components/title-with-description";
 import SpotifyCurrentlyPlaying from "../components/spotify-currently-playing";
+import SocialSharePreview from "../components/social-share-preview";
 
 const SpotifyPage = () => {
   const title = "Abdou Ouahib | Spotify";
@@ -13,8 +14,16 @@ const SpotifyPage = () => {
         <title>{title}</title>
         <meta name="description" content={description}/>
       </Head>
+      <SocialSharePreview
+        image="/static/images/social-share-preview/spotify.png"
+        title={title}
+        description={description}
+      />
       <TitleWithDescription title="Spotify" description={description}/>
       <SpotifyCurrentlyPlaying/>
+      <p className="text-center mt-24 text-gray-500 dark:text-gray-400">
+        Playlists coming soon...
+      </p>
     </div>
   );
 };
