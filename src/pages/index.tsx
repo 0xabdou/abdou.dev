@@ -94,8 +94,8 @@ const Home = (props: HomeProps) => {
       >
         {
           props.projects.map(project => (
-            <div className="p-3">
-              <ProjectItem project={project} key={project.slug}/>
+            <div className="p-3" key={project.slug}>
+              <ProjectItem project={project}/>
             </div>
           ))
         }

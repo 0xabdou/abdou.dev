@@ -1,5 +1,6 @@
 import Head from "next/head";
 import TitleWithDescription from "../components/title-with-description";
+import SpotifyCurrentlyPlaying from "../components/spotify-currently-playing";
 
 const SpotifyPage = () => {
   const title = "Abdou Ouahib | Spotify";
@@ -13,9 +14,7 @@ const SpotifyPage = () => {
         <meta name="description" content={description}/>
       </Head>
       <TitleWithDescription title="Spotify" description={description}/>
-      <div>
-        Zblbola
-      </div>
+      <SpotifyCurrentlyPlaying/>
     </div>
   );
 };

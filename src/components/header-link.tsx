@@ -12,7 +12,7 @@ const HeaderLink = (props: HeaderLinkProps) => {
   const children = (
     <>
       <div className="h-8 w-6 min-w-6 mr-2">
-        <i className={`${props.icon} text-2xl`}/>
+        <i className={`${props.icon} text-2xl`} aria-hidden/>
       </div>
       {props.label}
     </>
