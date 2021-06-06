@@ -19,7 +19,7 @@ export type Track = {
   date: number,
 }
 
-const getAccessToken = async (): Promise<SpotifyError | string> => {
+const getAuthorization = async (): Promise<SpotifyError | { Authorization: string }> => {
   const url = "https://accounts.spotify.com/api/token";
   const response = await fetch(
     url,
@@ -34,56 +34,68 @@ const getAccessToken = async (): Promise<SpotifyError | string> => {
     }
   );
   if (response.status != 200) return getSpotifyError(response);
-  return (await response.json()).access_token;
+  const json = await response.json();
+  return {Authorization: `Bearer ${json.access_token}`};
 };
 
 export const getCurrentlyPlaying = async (): Promise<SpotifyError | Track> => {
   const url = "https://api.spotify.com/v1/me/player/currently-playing";
-  const access_token = await getAccessToken();
-  if (isSpotifyError(access_token)) return access_token;
-  const response = await fetch(
-    url,
-    {headers: {"Authorization": `Bearer ${access_token}`}}
-  );
+  const headers = await getAuthorization();
+  if (isSpotifyError(headers)) return headers;
+  const response = await fetch(url, {headers});
   if (response.status != 200) return getSpotifyError(response);
-  return parseTrack(await response.json());
+  return parseTrack(await response.json(), "currently");
 };
 
 export const getRecentlyPlayed = async (): Promise<SpotifyError | Track> => {
   const limit = 1;
   const url = "https://api.spotify.com/v1/me/player/recently-played";
-  const access_token = await getAccessToken();
-  if (isSpotifyError(access_token)) return access_token;
-  const response = await fetch(
-    `${url}?limit=${limit}`,
-    {headers: {"Authorization": `Bearer ${access_token}`}}
-  );
+  const headers = await getAuthorization();
+  if (isSpotifyError(headers)) return headers;
+  const response = await fetch(`${url}?limit=${limit}`, {headers});
   if (response.status != 200) return getSpotifyError(response);
-  return parseTrack(await response.json());
+  return parseTrack(await response.json(), "recently");
 };
 
-const parseTrack = (json: any): Track => {
-  let isPlaying = json.is_playing;
-  console.log("isPLaying: ", isPlaying);
+export const getLiked = async (): Promise<SpotifyError | Track[]> => {
+  const url = "https://api.spotify.com/v1/me/tracks";
+  const headers = await getAuthorization();
+  if (isSpotifyError(headers)) return headers;
+  const response = await fetch(url, {headers});
+  if (response.status != 200) return getSpotifyError(response);
+  const tracks: any[] = (await response.json()).items;
+  return tracks.map(track => parseTrack(track, "liked"));
+};
+
+const parseTrack = (json: any, type: "currently" | "recently" | "liked"): Track => {
+  let isPlaying: boolean;
   let date: number;
   let item: any;
-  if (isPlaying == undefined) {
+  let imgIdx = 1;
+  if (type == "currently") {
+    item = json.item;
+    isPlaying = json.is_playing;
+    date = json.timestamp;
+  } else if (type == "recently") {
     item = json.items[0].track;
+    isPlaying = false;
     date = new Date(json.items[0].played_at).getTime();
   } else {
-    item = json.item;
-    date = json.timestamp;
+    item = json.track;
+    isPlaying = false;
+    date = new Date(json.added_at).getTime();
+    imgIdx = 2;
   }
   return {
     id: item.id,
     title: item.name,
     url: item.external_urls.spotify,
-    imageURL: item.album.images[1].url,
+    imageURL: item.album.images[imgIdx].url,
     artists: (item.artists as any[]).map(artist => ({
       name: artist.name,
       url: artist.external_urls.spotify
     })),
-    isPlaying: !!isPlaying,
+    isPlaying,
     date,
   };
 };
