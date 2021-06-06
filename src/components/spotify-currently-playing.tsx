@@ -46,7 +46,7 @@ const TrackCard = ({track}: { track: Track }) => {
       <div className="flex items-center">
         <img
           className={cardImageClass}
-          src={track.imageURL}
+          src={track.album.imageURL}
           alt="Track cover"
           height={300}
           width={300}

@@ -40,7 +40,7 @@ const MyApp = ({Component, pageProps}: AppProps) => {
         </header>
         <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}/>
         <main
-          className="flex justify-center w-full max-w-full md:px-2
+          className="flex justify-center w-full max-w-full
             min-h-screen pt-14">
           <Component {...pageProps} />
         </main>

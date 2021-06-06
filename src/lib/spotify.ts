@@ -9,11 +9,17 @@ export type Artist = {
   url: string,
 }
 
+export type Album = {
+  title: string,
+  url: string,
+  imageURL: string,
+}
+
 export type Track = {
   id: string,
   title: string,
   url: string
-  imageURL: string,
+  album: Album,
   artists: Artist[],
   isPlaying: boolean,
   date: number,
@@ -90,7 +96,11 @@ const parseTrack = (json: any, type: "currently" | "recently" | "liked"): Track 
     id: item.id,
     title: item.name,
     url: item.external_urls.spotify,
-    imageURL: item.album.images[imgIdx].url,
+    album: {
+      title: item.album.name,
+      imageURL: item.album.images[imgIdx].url,
+      url: item.album.external_urls.spotify
+    },
     artists: (item.artists as any[]).map(artist => ({
       name: artist.name,
       url: artist.external_urls.spotify

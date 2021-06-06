@@ -3,6 +3,9 @@ module.exports = {
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
+      height: {
+        "101": "36rem"
+      },
       colors: {
         knight: {
           DEFAULT: "#1a2634",
@@ -15,6 +18,10 @@ module.exports = {
         old: {
           DEFAULT: "#eef0f1",
           dark: "#D2D6DB"
+        },
+        spotify: {
+          DEFAULT: "#1DB954",
+          black: "#191414"
         }
       },
       boxShadow: {
