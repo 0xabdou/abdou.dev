@@ -25,6 +25,17 @@ export type Track = {
   date: number,
 }
 
+export type Playlist = {
+  url: string,
+  name: string,
+  tracks: Track[]
+}
+
+type SpotifySuccess = { message: "success" };
+const spotifySuccess: SpotifySuccess = {message: "success"};
+
+const likedSongsPlaylistID = process.env.SPOTIFY_LIKED_SONGS_PLAYLIST_ID as string;
+
 const getAuthorization = async (): Promise<SpotifyError | { Authorization: string }> => {
   const url = "https://accounts.spotify.com/api/token";
   const response = await fetch(
@@ -63,14 +74,113 @@ export const getRecentlyPlayed = async (): Promise<SpotifyError | Track> => {
   return parseTrack(await response.json(), "recently");
 };
 
-export const getLiked = async (): Promise<SpotifyError | Track[]> => {
+export const getLikedSongsPlaylist = async (): Promise<SpotifyError | Playlist> => {
   const url = "https://api.spotify.com/v1/me/tracks";
   const headers = await getAuthorization();
   if (isSpotifyError(headers)) return headers;
   const response = await fetch(url, {headers});
   if (response.status != 200) return getSpotifyError(response);
   const tracks: any[] = (await response.json()).items;
-  return tracks.map(track => parseTrack(track, "liked"));
+  return {
+    name: "Liked Songs",
+    url: `https://open.spotify.com/playlist/${likedSongsPlaylistID}`,
+    tracks: tracks.map(track => parseTrack(track, "liked"))
+  };
+};
+
+export const updateLikedSongsPlaylist = async (): Promise<SpotifyError | SpotifySuccess> => {
+  const clearResult = await clearLikedSongsPlaylist();
+  if (isSpotifyError(clearResult)) return clearResult;
+  const copyResult = await copyLikedSongsToLikedSongsPlaylist();
+  if (isSpotifyError(copyResult)) return copyResult;
+  return spotifySuccess;
+};
+
+const clearLikedSongsPlaylist = async (): Promise<SpotifyError | SpotifySuccess> => {
+  const headers = await getAuthorization();
+  if (isSpotifyError(headers)) return headers;
+  const baseURL = `https://api.spotify.com/v1/playlists/${likedSongsPlaylistID}/tracks`;
+  let url: string | null = baseURL;
+  let error: SpotifyError | undefined;
+  const existingURIs: string[] = [];
+  while (url && !error) {
+    const response = await fetch(url, {headers});
+    if (response.status != 200) {
+      error = await getSpotifyError(response);
+    } else {
+      const json = await response.json();
+      (json.items as any[]).forEach(item => existingURIs.push(item.track.uri));
+      url = json.next as string | null;
+    }
+  }
+  let i = 0;
+  while (i < existingURIs.length) {
+    let j = 0;
+    const urisToBeRemoved: string[] = [];
+    while (j < 100 && i < existingURIs.length) {
+      urisToBeRemoved.push(existingURIs[i]);
+      i++;
+      j++;
+    }
+    const response = await fetch(
+      baseURL,
+      {
+        method: "DELETE",
+        headers: {
+          ...headers,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({uris: urisToBeRemoved})
+      }
+    );
+    if (response.status != 200) return getSpotifyError(response);
+  }
+  return spotifySuccess;
+};
+
+const copyLikedSongsToLikedSongsPlaylist = async (): Promise<SpotifyError | SpotifySuccess> => {
+  const headers = await getAuthorization();
+  if (isSpotifyError(headers)) return headers;
+  let url = "https://api.spotify.com/v1/me/tracks?limit=50";
+  let error: SpotifyError | undefined;
+  const uris: string[] = [];
+  while (url && !error) {
+    const response = await fetch(url, {headers});
+    if (response.status != 200) {
+      error = await getSpotifyError(response);
+    } else {
+      const json = await response.json();
+      (json.items as any[]).forEach(item => uris.push(item.track.uri));
+      url = json.next;
+    }
+  }
+  if (error) return error;
+  url = `https://api.spotify.com/v1/playlists/${likedSongsPlaylistID}/tracks`;
+  let i = 0;
+  while (i < uris.length) {
+    let j = 0;
+    const urisToBeAdded: string[] = [];
+    while (j < 100 && i < uris.length) {
+      urisToBeAdded.push(uris[i]);
+      i++;
+      j++;
+    }
+    const response = await fetch(
+      url,
+      {
+        method: "POST",
+        headers: {
+          ...headers,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          uris: urisToBeAdded
+        })
+      }
+    );
+    if (response.status != 201) return getSpotifyError(response);
+  }
+  return spotifySuccess;
 };
 
 const parseTrack = (json: any, type: "currently" | "recently" | "liked"): Track => {

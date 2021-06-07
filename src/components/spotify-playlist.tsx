@@ -1,13 +1,13 @@
 import {timeAgo} from "../shared/use-time-ago";
-import {Track} from "../lib/spotify";
+import {Playlist} from "../lib/spotify";
 import {ReactNode} from "react";
 
 type SpotifyPlaylistProps = {
-  name: string,
-  tracks: Track[]
+  playlist: Playlist
 }
 
-const SpotifyPlaylist = ({name, tracks}: SpotifyPlaylistProps) => {
+const SpotifyPlaylist = (props: SpotifyPlaylistProps) => {
+  const {name, url, tracks} = props.playlist;
   return (
     <div
       className="flex flex-col space-y-3 mt-8
@@ -17,7 +17,7 @@ const SpotifyPlaylist = ({name, tracks}: SpotifyPlaylistProps) => {
         The header of the playlist, it displays the name of he playlist,
         and its "sections" (e.g: "#", "TITLE"... and it has a sticky position
       */}
-      <PlaylistRow header={name} key={`${name}_header`}/>
+      <PlaylistRow header={name} url={url} key={`${name}_header`}/>
       {/* The rest of the playlist rows, each displays a track*/}
       {tracks.map((track, idx) => (
         <PlaylistRow key={`${name}_row_${idx}`}>
@@ -88,10 +88,11 @@ const SpotifyPlaylist = ({name, tracks}: SpotifyPlaylistProps) => {
 
 type PlaylistRowProps = {
   header?: string,
+  url?: string,
   children?: ReactNode[]
 }
 
-const PlaylistRow = ({children, header}: PlaylistRowProps) => {
+const PlaylistRow = ({children, header, url}: PlaylistRowProps) => {
   const isHeader = !children;
   let actualChildren = children;
   if (!actualChildren) actualChildren = [
@@ -128,7 +129,22 @@ const PlaylistRow = ({children, header}: PlaylistRowProps) => {
         className="flex flex-col sticky top-14 bg-old dark:bg-knight-dark
           border-b border-black dark:border-white border-opacity-20 dark:border-opacity-20"
       >
-        <h2 className="text-markup-h2 font-bold m-2 mt-4">{header}</h2>
+        <div className="flex items-center m-2 mt-4 h-12">
+          <h2 className="text-markup-h2 font-bold">{header}</h2>
+          <div
+            className="flex justify-center items-center h-12 w-12 ml-auto mr-4">
+            <a
+              className="flex justify-center items-center rounded-full
+              w-10 h-10 hover:w-12 hover:h-12 active:w-12 active:h-12
+              bg-spotify shadow"
+              href={url}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <i className="fa fa-play text-white" aria-hidden/>
+            </a>
+          </div>
+        </div>
         {actualRow}
       </div>
     )

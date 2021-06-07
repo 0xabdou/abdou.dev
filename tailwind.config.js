@@ -41,6 +41,12 @@ module.exports = {
       }
     },
   },
+  variants: {
+    extend: {
+      width: ["hover", "active"],
+      height: ["hover", "active"],
+    }
+  },
   plugins: [
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/line-clamp'),

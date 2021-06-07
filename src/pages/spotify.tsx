@@ -1,13 +1,18 @@
 import Head from "next/head";
 import SpotifyCurrentlyPlaying from "../components/spotify-currently-playing";
 import SocialSharePreview from "../components/social-share-preview";
-import {getLiked, isSpotifyError, Track} from "../lib/spotify";
+import {
+  getLikedSongsPlaylist,
+  isSpotifyError,
+  Playlist,
+  updateLikedSongsPlaylist
+} from "../lib/spotify";
 import {GetStaticProps} from "next";
 import TitleWithDescription from "../components/title-with-description";
 import SpotifyPlaylist from "../components/spotify-playlist";
 
 type SpotifyPageProps = {
-  liked: Track[]
+  likedSongs: Playlist
 }
 
 const SpotifyPage = (props: SpotifyPageProps) => {
@@ -28,17 +33,19 @@ const SpotifyPage = (props: SpotifyPageProps) => {
       />
       <TitleWithDescription title="Spotify" description={description}/>
       <SpotifyCurrentlyPlaying/>
-      <SpotifyPlaylist name="Liked Songs" tracks={props.liked}/>
+      <SpotifyPlaylist playlist={props.likedSongs}/>
     </div>
   );
 };
 
 
 export const getStaticProps: GetStaticProps<SpotifyPageProps> = async () => {
-  const liked = await getLiked();
-  if (isSpotifyError(liked)) throw new Error(liked.error);
+  const updateResult = await updateLikedSongsPlaylist();
+  if (isSpotifyError(updateResult)) throw updateResult;
+  const likedSongs = await getLikedSongsPlaylist();
+  if (isSpotifyError(likedSongs)) throw new Error(likedSongs.error);
   return {
-    props: {liked},
+    props: {likedSongs},
     revalidate: 86400, // 24 hours
   };
 };
