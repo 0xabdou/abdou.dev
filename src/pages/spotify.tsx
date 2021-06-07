@@ -3,9 +3,8 @@ import SpotifyCurrentlyPlaying from "../components/spotify-currently-playing";
 import SocialSharePreview from "../components/social-share-preview";
 import {getLiked, isSpotifyError, Track} from "../lib/spotify";
 import {GetStaticProps} from "next";
-import {ReactNode} from "react";
-import {timeAgo} from "../shared/use-time-ago";
 import TitleWithDescription from "../components/title-with-description";
+import SpotifyPlaylist from "../components/spotify-playlist";
 
 type SpotifyPageProps = {
   liked: Track[]
@@ -29,121 +28,11 @@ const SpotifyPage = (props: SpotifyPageProps) => {
       />
       <TitleWithDescription title="Spotify" description={description}/>
       <SpotifyCurrentlyPlaying/>
-      <div
-        className="flex flex-col space-y-3 mt-8
-        text-sm text-black dark:text-white text-opacity-80 dark:text-opacity-80"
-      >
-        <PlaylistRow header="Liked Songs" key="liked_songs_header"/>
-        {props.liked.map((track, idx) => (
-          <PlaylistRow key={`liked_songs_row_${idx}`}>
-            {idx + 1}
-            <div className="flex">
-              <a
-                className="flex-shrink-0"
-                href={track.album.url}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <img
-                  className="w-10 h-10 mr-4"
-                  src={track.album.imageURL}
-                  alt="Track cover"
-                  width={64}
-                  height={64}
-                />
-              </a>
-              <div className="flex flex-col justify-center">
-                <a
-                  className="leading-4 line-clamp-1 font-bold text-base hover:underline"
-                  href={track.url}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  {track.title}
-                </a>
-                <div
-                  className="flex text-sm leading-4 line-clamp-1">
-                  {track.artists.map((artist, idx) => (
-                    <span key={`${track.id}_artist_${idx}`}>
-                      {!!idx && ", "}
-                      <a
-                        className="hover:underline"
-                        href={artist.url}
-                        rel="noreferrer noopener"
-                        target="_blank"
-                      >
-                        {artist.name}
-                      </a>
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <a
-              className="line-clamp-1 hover:underline"
-              href={track.album.url}
-            >
-              {track.album.title}
-            </a>
-            {timeAgo.format(track.date)}
-            {timeAgo.format(track.date, "mini")}
-          </PlaylistRow>
-        ))}
-      </div>
+      <SpotifyPlaylist name="Liked Songs" tracks={props.liked}/>
     </div>
   );
 };
 
-type PlaylistRowProps = {
-  header?: string,
-  children?: ReactNode[]
-}
-
-const PlaylistRow = ({children, header}: PlaylistRowProps) => {
-  const isHeader = !children;
-  let actualChildren = children;
-  if (!actualChildren) actualChildren = [
-    "#",
-    "TITLE",
-    "ALBUM",
-    "DATE ADDED",
-    "DATE"
-  ];
-
-  const actualRow = (
-    <div className="flex">
-      <div className="flex justify-center items-center w-12 flex-shrink-0">
-        {actualChildren[0]}
-      </div>
-      <div className="flex-grow pr-2">
-        {actualChildren[1]}
-      </div>
-      <div className="hidden sm:flex items-center w-56 flex-shrink-0 pr-2">
-        {actualChildren[2]}
-      </div>
-      <div className="hidden sm:flex items-center w-28 flex-shrink-0">
-        {actualChildren[3]}
-      </div>
-      <div className="flex sm:hidden items-center w-16 flex-shrink-0">
-        {actualChildren[4]}
-      </div>
-    </div>
-  );
-
-  return isHeader
-    ? (
-      <div
-        className="flex flex-col sticky top-14 bg-old dark:bg-knight-dark
-          border-b border-black dark:border-white border-opacity-20 dark:border-opacity-20"
-      >
-        <h2 className="text-markup-h2 font-bold m-2 mt-4">
-          {header}
-        </h2>
-        {actualRow}
-      </div>
-    )
-    : actualRow;
-};
 
 export const getStaticProps: GetStaticProps<SpotifyPageProps> = async () => {
   const liked = await getLiked();
