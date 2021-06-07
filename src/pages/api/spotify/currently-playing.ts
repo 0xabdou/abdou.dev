@@ -1,9 +1,6 @@
 import {NextApiHandler} from "next";
-import {
-  getCurrentlyPlaying,
-  getRecentlyPlayed,
-  isSpotifyError
-} from "../../../lib/spotify";
+import {getCurrentlyPlaying, getRecentlyPlayed,} from "../../../lib/spotify";
+import {isSpotifyError} from "../../../lib/spotify/spotify-error";
 
 const handler: NextApiHandler = async (_, res) => {
   const response = await getCurrentlyPlaying();

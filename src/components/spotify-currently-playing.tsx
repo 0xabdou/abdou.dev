@@ -1,4 +1,4 @@
-import {Track} from "../lib/spotify";
+import {Track} from "../lib/spotify/types";
 import useTimeAgo from "../shared/use-time-ago";
 import useSWR from "swr";
 import styled from "styled-components";

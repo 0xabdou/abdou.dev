@@ -1,5 +1,5 @@
 import {timeAgo} from "../shared/use-time-ago";
-import {Playlist} from "../lib/spotify";
+import {Playlist} from "../lib/spotify/types";
 import {ReactNode} from "react";
 
 type SpotifyPlaylistProps = {
@@ -73,6 +73,8 @@ const SpotifyPlaylist = (props: SpotifyPlaylistProps) => {
           <a
             className="line-clamp-1 hover:underline"
             href={track.album.url}
+            rel="noreferrer noopener"
+            target="_blank"
           >
             {track.album.title}
           </a>
