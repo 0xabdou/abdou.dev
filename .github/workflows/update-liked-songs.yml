@@ -3,7 +3,7 @@
 
 name: UpdateLikedSongs
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Schedules the cron job to be run every ${duration}
   schedule:
@@ -22,7 +22,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: aouahib/spotify-job
-          token: ${{ secrets.GH_PAT }} # `GitHub_PAT` is a secret that contains your PAT
       - name: Execute the action
         uses: ./
         with:
