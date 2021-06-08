@@ -2,7 +2,7 @@ import {NextApiHandler} from "next";
 import {updateLikedSongsPlaylist} from "../../../lib/spotify";
 
 const handler: NextApiHandler = async (req, res) => {
-  if (req.method != "POST") {
+  if (req.method != "PUT") {
     return res
       .status(400)
       .json({error: `Can't ${req.method} /api/spotify/update-liked-songs`});
