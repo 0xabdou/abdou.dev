@@ -1,13 +1,14 @@
-# This is an action that calls an API endpoint every ${duration}
+# This is an action that calls an API endpoint regularly
 # Calling that endpoint updates my Spotify playlist
 
 name: UpdateLikedSongs
 
 # Controls when the action will run.
 on:
-  # Schedules the cron job to be run every ${duration}
+  # Schedules the cron job to be run every 5 minutes (theoretically, but in
+  # practice, it's every hour or so)
   schedule:
-    - cron: "5 0 * * *"
+    - cron: "5 * * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -25,4 +26,4 @@ jobs:
       - name: Execute the action
         uses: ./
         with:
-          secret: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          super_secret: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
