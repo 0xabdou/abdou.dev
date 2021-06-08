@@ -23,6 +23,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: aouahib/spotify-job
+          token: ${{ secrets.GH_PAT }}
           ref: main
       - name: Execute the action
         uses: ./
