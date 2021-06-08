@@ -1,11 +1,12 @@
-# This is an action that calls an API endpoint every ${duration}
+# This is an action that calls an API endpoint regularly
 # Calling that endpoint updates my Spotify playlist
 
 name: UpdateLikedSongs
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
-  # Schedules the cron job to be run every ${duration}
+  # Schedules the cron job to be run every 5 minutes (theoretically, but in
+  # practice, it's every hour or so)
   schedule:
     - cron: "5 0 * * *"
 
@@ -18,8 +19,11 @@ jobs:
   cron:
     runs-on: ubuntu-latest
     steps:
-      - name: Call the API endpoint
-        run: |
-          curl --request POST \
-          --url 'https://abdou.dev/api/spotify/update-liked-songs' \
-          --header 'secret: ${{ secrets.SPOTIFY_CLIENT_SECRET }}'
+      - name: Checkout the action
+        uses: actions/checkout@v2
+        with:
+          repository: aouahib/spotify-job
+      - name: Execute the action
+        uses: ./
+        with:
+          super_secret: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
