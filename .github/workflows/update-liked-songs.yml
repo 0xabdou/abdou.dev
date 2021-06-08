@@ -18,8 +18,11 @@ jobs:
   cron:
     runs-on: ubuntu-latest
     steps:
-      - name: Call the API endpoint
-        run: |
-          curl --request POST \
-          --url 'https://abdou.dev/api/spotify/update-liked-songs' \
-          --header 'secret: ${{ secrets.SPOTIFY_CLIENT_SECRET }}'
+      - name: Checkout the action
+        uses: actions/checkout@v2
+        with:
+          repository: aouahib/spotify-job
+      - name: Execute the action
+        uses: ./
+        with:
+          secret: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
