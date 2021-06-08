@@ -1,4 +1,6 @@
 # abdou.dev
+[![UpdateLikedSongs](https://github.com/aouahib/abdou.dev/actions/workflows/update-liked-songs.yml/badge.svg)](https://github.com/aouahib/abdou.dev/actions/workflows/update-liked-songs.yml)
+
 This is my portfolio, where I post articles, and showcase some of my projects.
 
 Built with:
