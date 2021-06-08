@@ -1,13 +1,12 @@
 import Head from "next/head";
 import SpotifyCurrentlyPlaying from "../components/spotify-currently-playing";
 import SocialSharePreview from "../components/social-share-preview";
-import {getLikedSongsPlaylist, updateLikedSongsPlaylist} from "../lib/spotify";
+import {getLikedSongsPlaylist} from "../lib/spotify";
 import {GetStaticProps} from "next";
 import TitleWithDescription from "../components/title-with-description";
 import SpotifyPlaylist from "../components/spotify-playlist";
 import {Playlist} from "../lib/spotify/types";
 import {isSpotifyError} from "../lib/spotify/spotify-error";
-import {getAuthorization} from "../lib/spotify/auth";
 
 type SpotifyPageProps = {
   likedSongs: Playlist
@@ -38,11 +37,11 @@ const SpotifyPage = (props: SpotifyPageProps) => {
 
 
 export const getStaticProps: GetStaticProps<SpotifyPageProps> = async () => {
-  const auth = await getAuthorization();
-  if (isSpotifyError(auth)) throw new Error(auth.error);
-  const updateResult = await updateLikedSongsPlaylist(auth);
-  if (isSpotifyError(updateResult)) throw updateResult;
-  const likedSongs = await getLikedSongsPlaylist(auth);
+  //const auth = await getAuthorization();
+  //if (isSpotifyError(auth)) throw new Error(auth.error);
+  //const updateResult = await updateLikedSongsPlaylist(auth);
+  //if (isSpotifyError(updateResult)) throw updateResult;
+  const likedSongs = await getLikedSongsPlaylist();
   if (isSpotifyError(likedSongs)) throw new Error(likedSongs.error);
   return {
     props: {likedSongs},

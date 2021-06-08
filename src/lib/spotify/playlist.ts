@@ -85,9 +85,9 @@ const actOnURIs = async (props: ActOnURIsProps): Promise<SpotifyError | SpotifyS
     );
     if (response.status != 200 && response.status != 201)
       return getSpotifyError(response);
-    console.log(`DELETED ${i + 1} URIs`);
+    console.log(`${act} ${i} URIs`);
   }
-  console.log(`DELETED TOTAL ${uris.length} URIs`);
+  console.log(`${act} TOTAL ${uris.length} URIs`);
   return spotifySuccess;
 };
 
