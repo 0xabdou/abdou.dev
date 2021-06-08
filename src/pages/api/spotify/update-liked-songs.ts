@@ -8,7 +8,7 @@ const handler: NextApiHandler = async (req, res) => {
       .json({error: `Can't ${req.method} /api/spotify/update-liked-songs`});
   }
   const secret = req.body.secret;
-  console.log("SECRET: ", secret);
+  console.log("BODY: ", req.body);
   if (secret != process.env.SPOTIFY_CLIENT_SECRET) {
     return res
       .status(401)
