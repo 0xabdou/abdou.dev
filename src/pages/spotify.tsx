@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps<SpotifyPageProps> = async () => {
   if (isSpotifyError(likedSongs)) throw new Error(likedSongs.error);
   return {
     props: {likedSongs},
-    revalidate: 1, // 24 hours
+    revalidate: 3600, // 1 hour
   };
 };
 
