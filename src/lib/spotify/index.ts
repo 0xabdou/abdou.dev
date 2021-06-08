@@ -30,7 +30,6 @@ export const getLikedSongsPlaylist = async (auth?: AuthorizationHeader): Promise
   const headers = await maybeGetAuth(auth);
   if (isSpotifyError(headers)) return headers;
   const url = "https://api.spotify.com/v1/me/tracks";
-  if (isSpotifyError(headers)) return headers;
   const response = await fetch(url, {headers});
   if (response.status != 200) return getSpotifyError(response);
   const tracks: any[] = (await response.json()).items;

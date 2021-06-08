@@ -50,6 +50,7 @@ const gatherURIs = async (props: GatherURIsProps): Promise<SpotifyError | string
       url = json.next as string | null;
     }
   }
+  console.log(`GATHERED ${uris.length} URIs`);
   return uris;
 };
 
@@ -84,7 +85,9 @@ const actOnURIs = async (props: ActOnURIsProps): Promise<SpotifyError | SpotifyS
     );
     if (response.status != 200 && response.status != 201)
       return getSpotifyError(response);
+    console.log(`DELETED ${i + 1} URIs`);
   }
+  console.log(`DELETED TOTAL ${uris.length} URIs`);
   return spotifySuccess;
 };
 
