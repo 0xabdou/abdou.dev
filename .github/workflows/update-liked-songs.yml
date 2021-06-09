@@ -8,7 +8,7 @@ on:
   # Schedules the cron job to be run every 5 minutes (theoretically, but in
   # practice, it's every hour or so)
   schedule:
-    - cron: "5 * * * *"
+    - cron: "0 * * * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
