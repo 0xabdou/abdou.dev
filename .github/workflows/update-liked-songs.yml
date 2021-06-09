@@ -5,8 +5,7 @@ name: UpdateLikedSongs
 
 # Controls when the action will run.
 on:
-  # Schedules the cron job to be run every 5 minutes (theoretically, but in
-  # practice, it's every hour or so)
+  # Schedules the cron job to be run every hour (theoretically)
   schedule:
     - cron: "0 * * * *"
 
