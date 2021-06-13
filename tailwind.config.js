@@ -1,5 +1,6 @@
 module.exports = {
   purge: ["./src/pages/**/*.{js,ts,jsx,tsx}", "./src/components/**/*.{js,ts,jsx,tsx}"],
+  mode: "jit",
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
@@ -37,15 +38,10 @@ module.exports = {
         "markup-h4": "1.15rem",
       },
       fontFamily: {
-        'sans': ['Roboto', 'Helvetica', 'Arial', 'sans-serif']
+        'sans': ['Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+        "poppins": ["Poppins", "sans-serif"]
       }
     },
-  },
-  variants: {
-    extend: {
-      width: ["hover", "active"],
-      height: ["hover", "active"],
-    }
   },
   plugins: [
     require('@tailwindcss/aspect-ratio'),

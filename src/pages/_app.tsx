@@ -5,11 +5,13 @@ import ThemeContext, {ThemeContextType} from "../shared/theme-context";
 import TopBar from "../components/top-bar";
 import Drawer from "../components/drawer";
 import Footer from "../components/footer";
+import {useRouter} from "next/router";
 
 
 const MyApp = ({Component, pageProps}: AppProps) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [theme, setTheme] = useState<ThemeContextType["theme"]>("dark");
+  const {pathname} = useRouter();
 
   useEffect(() => {
     const persistedTheme =
@@ -32,19 +34,25 @@ const MyApp = ({Component, pageProps}: AppProps) => {
     }
   }, [theme, setTheme]);
 
+
+  const showSharedLayout = !pathname.startsWith("/front-end-practice");
   return (
     <ThemeContext.Provider value={{theme, toggleTheme}}>
       <div className="flex flex-col w-full text-black dark:text-white">
-        <header className="fixed top-0 w-full z-40">
-          <TopBar onMenuClicked={() => setDrawerOpen(true)}/>
-        </header>
-        <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}/>
+        {showSharedLayout &&
+        <>
+          <header className="fixed top-0 w-full z-40">
+            <TopBar onMenuClicked={() => setDrawerOpen(true)}/>
+          </header>
+          <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}/>
+        </>}
         <main
-          className="flex justify-center w-full max-w-full
-            min-h-screen pt-14">
+          className={`flex justify-center w-full max-w-full min-h-screen 
+          ${showSharedLayout ? "pt-14" : ""}`}
+        >
           <Component {...pageProps} />
         </main>
-        <Footer/>
+        {showSharedLayout && <Footer/>}
       </div>
     </ThemeContext.Provider>
   );

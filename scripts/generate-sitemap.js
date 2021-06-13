@@ -63,7 +63,8 @@ const generateSitemap = async () => {
     "src/pages/**/*.tsx",
     "!src/pages/**/_*.tsx",
     "!src/pages/**/[*.tsx",
-    "data/blog"
+    "data/blog",
+    "data/projects"
   ]);
   let urls = pages.map(page => {
     let path = page
@@ -73,6 +74,8 @@ const generateSitemap = async () => {
       path = path.replace("src/pages", "");
     } else if (path.startsWith("data/blog/")) {
       path = path.replace("data/blog", "/blog");
+    } else if (path.startsWith("data/projects/")) {
+      path = path.replace("data/blog", "/projects");
     }
     if (path.endsWith("/index"))
       path = path.replace("/index", "");
