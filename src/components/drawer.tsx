@@ -92,6 +92,12 @@ const Drawer = (props: DrawerProps) => {
             href="/spotify"
             onClick={onItemClicked}
           />
+          <MenuItem
+            icon="/static/icons/FP.svg"
+            label="Front End Practice"
+            href="/front-end-practice"
+            onClick={onItemClicked}
+          />
         </div>
       </div>
       <div

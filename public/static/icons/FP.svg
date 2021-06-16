@@ -1,0 +1,13 @@
+<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">
+    <g>
+        <title>Front End Practice</title>
+        <circle id="svg_1" stroke-width="1px" stroke="#4d4d4d" r="250" cy="250"
+                cx="250" class="cls-1"/>
+        <text font-weight="700" font-family="Arial" text-anchor="middle"
+              fill="#fff" font-size="45px"
+              transform="translate(250 339.577) scale(5.298)" class="cls-2"
+              id="FP">
+            <tspan id="svg_2" x="0">FP</tspan>
+        </text>
+    </g>
+</svg>

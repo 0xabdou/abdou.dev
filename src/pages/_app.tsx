@@ -35,7 +35,8 @@ const MyApp = ({Component, pageProps}: AppProps) => {
   }, [theme, setTheme]);
 
 
-  const showSharedLayout = !pathname.startsWith("/front-end-practice");
+  const fep = /^\/front-end-practice\/.+$/;
+  const showSharedLayout = !fep.test(pathname);
   return (
     <ThemeContext.Provider value={{theme, toggleTheme}}>
       <div className="flex flex-col w-full text-black dark:text-white">

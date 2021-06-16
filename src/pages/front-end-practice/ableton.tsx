@@ -8,6 +8,9 @@ import AbletonSection, {AbletonSectionLink} from "../../components/fep/ableton/a
 import AbletonYoutube from "../../components/fep/ableton/ableton-youtube";
 import AbletonFooter from "../../components/fep/ableton/ableton-footer";
 import AbletonLogo from "../../components/fep/ableton/ableton-logo";
+import Original from "../../components/fep/original";
+import Head from "next/head";
+import SocialSharePreview from "../../components/social-share-preview";
 
 
 const Ableton = () => {
@@ -20,11 +23,22 @@ const Ableton = () => {
 
   const colorClass = `transition transition-color duration-500
     ${menuOpen ? "text-white focus:outline-white" : "text-black focus:outline-black"}`;
+  const title = "Abdou Ouahib | Ableton";
+  const description = "My recreation of the Ableton website";
   return (
     <div className={`w-full h-screen max-w-screen-xl text-black 
         ${menuOpen ? "overflow-y-hidden" : "overflow-y-auto"}`}
          ref={scrollRef}
     >
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description}/>
+      </Head>
+      <SocialSharePreview
+        image="/static/images/fep/ableton/banner.png"
+        title={title}
+        description={description}
+      />
       <div
         className="relative flex flex-col w-full bg-white font-poppins">
         <AbletonDropdownMenu open={menuOpen}/>
@@ -328,6 +342,7 @@ const Ableton = () => {
         />
         <AbletonFooter/>
       </div>
+      <Original href="https://www.ableton.com/en/about/"/>
     </div>
   );
 };

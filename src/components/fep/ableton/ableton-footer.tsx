@@ -86,7 +86,7 @@ const AbletonFooter = () => {
                 ))}
               </select>
               <select
-                className="w-64 max-w-full bg-black bg-opacity-10 p-2"
+                className="w-64 max-w-full bg-black bg-opacity-10 p-2 mb-1"
                 defaultValue="Morocco"
               >
                 {countries.map((c) => (
