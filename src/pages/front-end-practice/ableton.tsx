@@ -1,4 +1,4 @@
-import {useCallback, useRef, useState} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import AbletonDropdownMenu
   from "../../components/fep/ableton/ableton-dropdown-menu";
 import AbletonStickyMenu
@@ -11,11 +11,17 @@ import AbletonLogo from "../../components/fep/ableton/ableton-logo";
 import Original from "../../components/fep/original";
 import Head from "next/head";
 import SocialSharePreview from "../../components/social-share-preview";
+import {useMediaQuery} from "react-responsive";
 
 
 const Ableton = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const lg = useMediaQuery({query: "(min-width: 1024px)"});
+
+  useEffect(() => {
+    if (lg) setMenuOpen(false);
+  }, [lg]);
 
   const toggleMenu = useCallback(() => {
     setMenuOpen(open => !open);
