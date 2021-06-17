@@ -25,24 +25,28 @@ const AbletonDropdownMenu = ({open}: AbletonDropdownMenuProps) => {
       <MenuItem label="About Ableton" mini/>
       <MenuItem label="Jobs" mini/>
       <MenuItem label="More from Ableton:" header/>
-      <div
-        className="flex w-full space-x-4 overflow-x-auto overflow-y-hidden min-h-[7rem]">
-        <MenuParagraph
-          label="Loop"
-          text="Watch Talks, Performances and Features from Ableton's Summit for Music Makers."
-        />
-        <MenuParagraph
-          label="Learning Music"
-          text="Learn the fundamentals of music making right in your browser."
-        />
-        <MenuParagraph
-          label="Learning Synths"
-          text="Get started with synthesis using a web-based synth and accompanying lessons."
-        />
-        <MenuParagraph
-          label="Making Music"
-          text="Some tips from 74 Creative Strategies for Electronic Producers"
-        />
+      <div className="flex relative">
+        <div
+          className="flex w-full space-x-4 overflow-x-auto overflow-y-hidden min-h-[7rem] pr-16">
+          <MenuParagraph
+            label="Loop"
+            text="Watch Talks, Performances and Features from Ableton's Summit for Music Makers."
+          />
+          <MenuParagraph
+            label="Learning Music"
+            text="Learn the fundamentals of music making right in your browser."
+          />
+          <MenuParagraph
+            label="Learning Synths"
+            text="Get started with synthesis using a web-based synth and accompanying lessons."
+          />
+          <MenuParagraph
+            label="Making Music"
+            text="Some tips from 74 Creative Strategies for Electronic Producers"
+          />
+        </div>
+        <div
+          className="absolute right-0 w-16 h-full bg-gradient-to-l from-[#0000ff]"/>
       </div>
     </div>
   );

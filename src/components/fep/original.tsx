@@ -13,7 +13,7 @@ const Original = ({href}: Original) => {
 
   return (
     <div
-      className={`flex items-center justify-center absolute bottom-6 right-2 z-50
+      className={`flex items-center justify-center absolute bottom-6 right-2 z-[35]
       h-14 min-w-[3.5rem] rounded-full shadow-lg bg-knight text-white select-none 
       ${!expanded ? "hover:bg-opacity-90" : ""}`}
     >
