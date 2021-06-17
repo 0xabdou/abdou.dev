@@ -23,7 +23,7 @@ const FrontEndPractice = () => {
       />
       <TitleWithDescription
         title="Front End Practice"
-        description=""
+        description={description}
       />
       <div className="flex flex-col w-full px-4 my-8">
         <div
