@@ -23,7 +23,19 @@ const FrontEndPractice = () => {
       />
       <TitleWithDescription
         title="Front End Practice"
-        description={description}
+        description={<>
+          {description}
+          &nbsp;Visit&nbsp;
+          <a
+            className="font-bold hover:underline"
+            href="https://www.frontendpractice.com/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Front End Practice
+          </a>
+          .
+        </>}
       />
       <div className="flex flex-col w-full px-4 my-8">
         <div

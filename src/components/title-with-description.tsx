@@ -1,6 +1,8 @@
+import {ReactNode} from "react";
+
 type TitleWithDescriptionProps = {
   title: string,
-  description: string,
+  description: ReactNode,
 };
 
 const TitleWithDescription = (props: TitleWithDescriptionProps) => {
