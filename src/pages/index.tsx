@@ -1,29 +1,29 @@
+import { GetStaticProps } from "next";
 import Head from "next/head";
-import ArticleItem from "../components/article-item";
-import {ArticleMeta, getAllArticles} from "../lib/blog";
-import {GetStaticProps} from "next";
 import Link from "next/link";
-import SocialSharePreview from "../components/social-share-preview";
+import { ReactNode } from "react";
+import ArticleItem from "../components/article-item";
 import HeaderLink from "../components/header-link";
-import {ReactNode} from "react";
-import {getAllProjects, ProjectMeta} from "../lib/projects";
 import ProjectItem from "../components/project-item";
+import SocialSharePreview from "../components/social-share-preview";
+import { ArticleMeta, getAllArticles } from "../lib/blog";
+import { getAllProjects, ProjectMeta } from "../lib/projects";
 
 type HomeProps = {
-  articles: ArticleMeta[],
-  projects: ProjectMeta[]
+  articles: ArticleMeta[];
+  projects: ProjectMeta[];
 };
 
 const Home = (props: HomeProps) => {
-  const title = "Abdou Ouahib | Software Engineer 🚀";
-  const description = "A type-safe software engineer and tech writer. "
-    + "I work mainly with React and Next.js, but can Flutter just as good. "
-    + "I also play chess occasionally.";
+  const title = "Abdou Ouahib | Software Developer🚀";
+  const descriptionStr =
+    "A type-safe software developer and tech content creator. Currently a Frontend Lead at Cosmic JS";
+
   return (
     <div className="flex flex-col w-full max-w-4xl">
       <Head>
         <title>{title}</title>
-        <meta name="description" content={description}/>
+        <meta name="description" content={descriptionStr} />
         <meta
           name="keywords"
           content="software engineer, software developer, web developer,
@@ -33,7 +33,7 @@ const Home = (props: HomeProps) => {
       <SocialSharePreview
         image="/static/images/social-share-preview/home.png"
         title={title}
-        description={description}
+        description={descriptionStr}
       />
       <div
         className="relative flex flex-col md:items-center rounded
@@ -55,10 +55,10 @@ const Home = (props: HomeProps) => {
           Abdou Ouahib
         </h1>
         <p className="text-black dark:text-gray-200 mb-2">
-          Type-safe Software Developer 🚀 Tech Writer ✍️
+          Type-safe Software Developer 🚀 Tech Content Creator ✍️
         </p>
         <div className="flex flex-wrap">
-          <HeaderLink icon="fa fa-map-marker" label="Morocco"/>
+          <HeaderLink icon="fa fa-map-marker" label="Morocco" />
           <HeaderLink
             icon="fa fa-github"
             label="GitHub"
@@ -76,63 +76,62 @@ const Home = (props: HomeProps) => {
           />
         </div>
       </div>
-      <Section
-        className="mt-12"
-        label="Recent articles"
-        moreHref="/blog"
-      >
-        {
-          props.articles.map(article => (
-            <ArticleItem article={article} key={article.slug}/>
-          ))
-        }
+      <Section className="mt-12" label="Recent articles" moreHref="/blog">
+        {props.articles.map((article) => (
+          <ArticleItem article={article} key={article.slug} />
+        ))}
       </Section>
       <Section
         className="mt-3 mb-12"
         label="Recent projects"
         moreHref="/projects"
       >
-        {
-          props.projects.map(project => (
-            <div className="p-3" key={project.slug}>
-              <ProjectItem project={project}/>
-            </div>
-          ))
-        }
+        {props.projects.map((project) => (
+          <div className="p-3" key={project.slug}>
+            <ProjectItem project={project} />
+          </div>
+        ))}
       </Section>
     </div>
   );
 };
 
 type SectionProps = {
-  label: string,
-  children: ReactNode,
-  moreHref: string,
-  className?: string,
-}
+  label: string;
+  children: ReactNode;
+  moreHref: string;
+  className?: string;
+};
 
-const Section = ({label, children, moreHref, className = ""}: SectionProps) => {
+const Section = ({
+  label,
+  children,
+  moreHref,
+  className = "",
+}: SectionProps) => {
   return (
-    <div className={`flex flex-col bg-white dark:bg-knight
+    <div
+      className={`flex flex-col bg-white dark:bg-knight
         divide-y divide-solid divide-black divide-opacity-10
         dark:divide-white dark:divide-opacity-10 rounded ${className}`}
     >
       <div className="flex items-center justify-between py-3 px-4">
-        <h2
-          className="text-black dark:text-white text-2xl font-bold "
-        >
+        <h2 className="text-black dark:text-white text-2xl font-bold ">
           {label}
         </h2>
         <Link href={moreHref}>
-          <a className="hidden sm:inline text-gray-500 dark:text-gray-400
-             hover:text-mineta-dark dark:hover:text-mineta">
+          <a
+            className="hidden sm:inline text-gray-500 dark:text-gray-400
+             hover:text-mineta-dark dark:hover:text-mineta"
+          >
             Show more
           </a>
         </Link>
       </div>
       {children}
       <Link href={moreHref}>
-        <a className="sm:hidden p-4 text-center
+        <a
+          className="sm:hidden p-4 text-center
             text-gray-500 dark:text-gray-400
             hover:text-mineta-dark dark:hover:text-mineta"
         >
@@ -144,10 +143,14 @@ const Section = ({label, children, moreHref, className = ""}: SectionProps) => {
 };
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const articles = getAllArticles().slice(0, 2).map(a => a.meta);
-  const projects = getAllProjects().slice(0, 2).map(p => p.meta);
+  const articles = getAllArticles()
+    .slice(0, 2)
+    .map((a) => a.meta);
+  const projects = getAllProjects()
+    .slice(0, 2)
+    .map((p) => p.meta);
   return {
-    props: {articles, projects}
+    props: { articles, projects },
   };
 };
 
