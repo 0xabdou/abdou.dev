@@ -1,17 +1,17 @@
-import {getSpotifyError, isSpotifyError, SpotifyError} from "./spotify-error";
-import {Playlist, Track} from "./types";
-import {AuthorizationHeader, getAuthorization} from "./auth";
+import { AuthorizationHeader, getAuthorization } from "./auth";
 import {
   clearLikedSongsPlaylist,
-  copyLikedSongsToLikedSongsPlaylist
+  copyLikedSongsToLikedSongsPlaylist,
 } from "./playlist";
-import {spotifySuccess, SpotifySuccess} from "./spotify-success";
+import { getSpotifyError, isSpotifyError, SpotifyError } from "./spotify-error";
+import { spotifySuccess, SpotifySuccess } from "./spotify-success";
+import { Playlist, Track } from "./types";
 
 export const getCurrentlyPlaying = async (): Promise<SpotifyError | Track> => {
   const url = "https://api.spotify.com/v1/me/player/currently-playing";
   const headers = await getAuthorization();
   if (isSpotifyError(headers)) return headers;
-  const response = await fetch(url, {headers});
+  const response = await fetch(url, { headers });
   if (response.status != 200) return getSpotifyError(response);
   return parseTrack(await response.json(), "currently");
 };
@@ -21,26 +21,30 @@ export const getRecentlyPlayed = async (): Promise<SpotifyError | Track> => {
   const url = "https://api.spotify.com/v1/me/player/recently-played";
   const headers = await getAuthorization();
   if (isSpotifyError(headers)) return headers;
-  const response = await fetch(`${url}?limit=${limit}`, {headers});
+  const response = await fetch(`${url}?limit=${limit}`, { headers });
   if (response.status != 200) return getSpotifyError(response);
   return parseTrack(await response.json(), "recently");
 };
 
-export const getLikedSongsPlaylist = async (auth?: AuthorizationHeader): Promise<SpotifyError | Playlist> => {
+export const getLikedSongsPlaylist = async (
+  auth?: AuthorizationHeader
+): Promise<SpotifyError | Playlist> => {
   const headers = await maybeGetAuth(auth);
   if (isSpotifyError(headers)) return headers;
   const url = "https://api.spotify.com/v1/me/tracks";
-  const response = await fetch(url, {headers});
+  const response = await fetch(url, { headers });
   if (response.status != 200) return getSpotifyError(response);
-  const tracks: any[] = (await response.json()).items;
+  const tracks = (await response.json()).items;
   return {
     name: "Liked Songs",
     url: `https://open.spotify.com/playlist/${process.env.SPOTIFY_LIKED_SONGS_PLAYLIST_ID}`,
-    tracks: tracks.map(track => parseTrack(track, "liked"))
+    tracks: tracks.map((track: any) => parseTrack(track, "liked")),
   };
 };
 
-export const updateLikedSongsPlaylist = async (auth?: AuthorizationHeader): Promise<SpotifyError | SpotifySuccess> => {
+export const updateLikedSongsPlaylist = async (
+  auth?: AuthorizationHeader
+): Promise<SpotifyError | SpotifySuccess> => {
   const headers = await maybeGetAuth(auth);
   if (isSpotifyError(headers)) return headers;
   const clearResult = await clearLikedSongsPlaylist(headers);
@@ -50,12 +54,17 @@ export const updateLikedSongsPlaylist = async (auth?: AuthorizationHeader): Prom
   return spotifySuccess;
 };
 
-const maybeGetAuth = async (auth?: AuthorizationHeader): Promise<SpotifyError | AuthorizationHeader> => {
+const maybeGetAuth = async (
+  auth?: AuthorizationHeader
+): Promise<SpotifyError | AuthorizationHeader> => {
   if (auth) return auth;
   return getAuthorization();
 };
 
-const parseTrack = (json: any, type: "currently" | "recently" | "liked"): Track => {
+const parseTrack = (
+  json: any,
+  type: "currently" | "recently" | "liked"
+): Track => {
   let isPlaying: boolean;
   let date: number;
   let item: any;
@@ -81,11 +90,11 @@ const parseTrack = (json: any, type: "currently" | "recently" | "liked"): Track 
     album: {
       title: item.album.name,
       imageURL: item.album.images[imgIdx].url,
-      url: item.album.external_urls.spotify
+      url: item.album.external_urls.spotify,
     },
-    artists: (item.artists as any[]).map(artist => ({
+    artists: (item.artists as any[]).map((artist) => ({
       name: artist.name,
-      url: artist.external_urls.spotify
+      url: artist.external_urls.spotify,
     })),
     isPlaying,
     date,
