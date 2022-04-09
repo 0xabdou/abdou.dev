@@ -55,7 +55,7 @@ const Drawer = (props: DrawerProps) => {
             pl-4 py-2 border-b border-black dark:border-white
             border-opacity-10 dark:border-opacity-10"
         >
-          Abdou's Corner
+          {"Abdou's Corner"}
           <IconButton
             onClick={props.onClose}
             icon="fa fa-times"

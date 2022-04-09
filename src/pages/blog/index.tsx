@@ -1,13 +1,13 @@
-import {GetStaticProps, InferGetStaticPropsType} from "next";
-import {ArticleMeta, getAllArticles} from "../../lib/blog";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 import ArticlesWithSearch from "../../components/articles-with-search";
 import SocialSharePreview from "../../components/social-share-preview";
 import TitleWithDescription from "../../components/title-with-description";
+import { ArticleMeta, getAllArticles } from "../../lib/blog";
 
 const Blog = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-
   const title = "Blog | Abdou Ouahib";
-  const description = "I started blogging in 2020 at dev.to, and here you can find all the blog posts I published ever since. Now I mainly post on my own blog (this one), but I still cross-post to other blogging platforms.";
+  const description =
+    "I started blogging in 2020 at dev.to, and here you can find all the blog posts I published ever since. Now I mainly post on my own blog (this one), but I still cross-post to other blogging platforms.";
   return (
     <div className="max-w-screen-md">
       <SocialSharePreview
@@ -17,7 +17,10 @@ const Blog = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       />
       <ArticlesWithSearch
         header={
-          <TitleWithDescription title="All Articles" description={description}/>
+          <TitleWithDescription
+            title="All Articles"
+            description={description}
+          />
         }
         articles={props.articles}
         title={title}
@@ -27,11 +30,12 @@ const Blog = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   );
 };
 
-export const getStaticProps: GetStaticProps<{ articles: ArticleMeta[] }> = async () => {
-  const articles = getAllArticles().map(article => article.meta);
-  return {
-    props: {articles}
+export const getStaticProps: GetStaticProps<{ articles: ArticleMeta[] }> =
+  async () => {
+    const articles = getAllArticles().map((article) => article.meta);
+    return {
+      props: { articles },
+    };
   };
-};
 
 export default Blog;

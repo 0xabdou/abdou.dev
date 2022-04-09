@@ -316,9 +316,9 @@ const Ableton = () => {
           }
           paragraph={
             <>
-              If you're joining us in Berlin, we'll help with relocation and
-              paperwork. We’ll even provide you with free German or English
-              lessons. Plus, working in Germany means you can expect
+              If you&apos;re joining us in Berlin, we&apos;ll help with
+              relocation and paperwork. We’ll even provide you with free German
+              or English lessons. Plus, working in Germany means you can expect
               comprehensive health insurance for you and your family, as well as
               generous maternity and paternity leave. Office hours are flexible,
               but it’s not all work; we have several company and team outings
