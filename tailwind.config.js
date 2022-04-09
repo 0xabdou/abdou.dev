@@ -1,16 +1,15 @@
 module.exports = {
-  purge: ["./src/pages/**/*.{js,ts,jsx,tsx}", "./src/components/**/*.{js,ts,jsx,tsx}"],
-  mode: "jit",
+  content: ["**/*.tsx"],
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
       height: {
-        "101": "36rem"
+        101: "36rem",
       },
       colors: {
         knight: {
           DEFAULT: "#1a2634",
-          dark: "#0d1219"
+          dark: "#0d1219",
         },
         mineta: {
           DEFAULT: "#7b78ff",
@@ -18,18 +17,18 @@ module.exports = {
         },
         old: {
           DEFAULT: "#eef0f1",
-          dark: "#D2D6DB"
+          dark: "#D2D6DB",
         },
         spotify: {
           DEFAULT: "#1DB954",
-          black: "#191414"
-        }
+          black: "#191414",
+        },
       },
       boxShadow: {
-        switch: "0 0 4px 3px #7b78ff"
+        switch: "0 0 4px 3px #7b78ff",
       },
       transitionProperty: {
-        "absolution": "left, right, top, bottom"
+        absolution: "left, right, top, bottom",
       },
       fontSize: {
         "markup-h1": "1.97rem",
@@ -38,13 +37,13 @@ module.exports = {
         "markup-h4": "1.15rem",
       },
       fontFamily: {
-        'sans': ['Roboto', 'Helvetica', 'Arial', 'sans-serif'],
-        "poppins": ["Poppins", "sans-serif"]
-      }
+        sans: ["Roboto", "Helvetica", "Arial", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
+      },
     },
   },
   plugins: [
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/line-clamp'),
+    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/line-clamp"),
   ],
 };

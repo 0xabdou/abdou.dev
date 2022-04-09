@@ -3,8 +3,8 @@ import IconButton from "./icon-button";
 import ThemeSwitch from "./theme-switch";
 
 type TopBarProps = {
-  onMenuClicked: () => void,
-}
+  onMenuClicked: () => void;
+};
 
 const TopBar = (props: TopBarProps) => {
   return (
@@ -33,11 +33,10 @@ const TopBar = (props: TopBarProps) => {
           ABDOU
         </a>
       </Link>
-      <div className="flex-grow"/>
-      <ThemeSwitch/>
+      <div className="grow" />
+      <ThemeSwitch />
     </div>
   );
 };
-
 
 export default TopBar;

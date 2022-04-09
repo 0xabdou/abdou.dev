@@ -42,7 +42,7 @@ const Home = (props: HomeProps) => {
         <img
           className="absolute rounded-full
             -top-8 md:-top-14 md:right-1/2
-            transform translate-x-4 md:translate-x-16
+            translate-x-4 md:translate-x-16
             w-16 h-16 md:w-32 md:h-32
             border-black border-4 md:border-8"
           src={"/static/images/avatar.png"}

@@ -1,17 +1,17 @@
-import IconButton from "./icon-button";
+import { useRouter } from "next/router";
 import {
   MouseEventHandler,
   useCallback,
   useEffect,
   useRef,
-  useState
+  useState,
 } from "react";
-import {useRouter} from "next/router";
+import IconButton from "./icon-button";
 
 type DrawerProps = {
-  open: boolean,
-  onClose: () => void,
-}
+  open: boolean;
+  onClose: () => void;
+};
 
 const Drawer = (props: DrawerProps) => {
   const router = useRouter();
@@ -33,15 +33,17 @@ const Drawer = (props: DrawerProps) => {
     if (!open) timer.current = setTimeout(() => setMounted(false), 300);
   }, [open]);
 
-  const onItemClicked = useCallback((path: string) => {
-    void router.push(path);
-    props.onClose();
-  }, [router, props.onClose]);
+  const onItemClicked = useCallback(
+    (path: string) => {
+      void router.push(path);
+      props.onClose();
+    },
+    [router, props.onClose]
+  );
 
   if (!mounted) return null;
   return (
-    <nav
-      className="fixed flex top-0 bottom-0 left-0 right-0 z-40 overflow-hidden">
+    <nav className="fixed flex top-0 bottom-0 left-0 right-0 z-40 overflow-hidden">
       <div
         className={`flex flex-col w-80 max-w-full h-full bg-white dark:bg-knight 
           absolute  ${!open && "-left-80"} ${open && "-left-0"}
@@ -101,7 +103,7 @@ const Drawer = (props: DrawerProps) => {
         </div>
       </div>
       <div
-        className={`flex-grow bg-black
+        className={`grow bg-black
           transition-opacity duration-300 
           ${!open && "bg-opacity-0"} ${open && "bg-opacity-30"}`}
         onClick={props.onClose}
@@ -111,29 +113,33 @@ const Drawer = (props: DrawerProps) => {
 };
 
 type MenuItemProps = {
-  icon: string,
-  label: string,
-  href: string,
-  onClick: (path: string) => void
+  icon: string;
+  label: string;
+  href: string;
+  onClick: (path: string) => void;
 };
 
 const MenuItem = (props: MenuItemProps) => {
-
-  const onClick: MouseEventHandler = useCallback((e) => {
-    e.preventDefault();
-    props.onClick(props.href);
-  }, [props.onClick, props.href]);
+  const onClick: MouseEventHandler = useCallback(
+    (e) => {
+      e.preventDefault();
+      props.onClick(props.href);
+    },
+    [props.onClick, props.href]
+  );
 
   return (
-    <a className="flex items-center p-2 cursor-pointer rounded-md
+    <a
+      className="flex items-center p-2 cursor-pointer rounded-md
           text-black dark:text-white
           hover:text-mineta-dark dark:hover:text-mineta
           bg-black bg-opacity-0 dark:bg-white dark:bg-opacity-0
           hover:bg-opacity-10 dark:hover:bg-opacity-10"
-       href={props.href}
-       onClick={onClick}
+      href={props.href}
+      onClick={onClick}
     >
-      <img alt="" src={props.icon} className="h-5 w-5 mr-3"/>{props.label}
+      <img alt="" src={props.icon} className="h-5 w-5 mr-3" />
+      {props.label}
     </a>
   );
 };

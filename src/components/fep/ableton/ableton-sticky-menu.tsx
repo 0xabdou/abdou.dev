@@ -1,10 +1,11 @@
-import {RefObject, useCallback, useEffect, useRef, useState} from "react";
+import classNames from "classnames";
+import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 
 type AbletonStickyMenuProps = {
-  scrollRef: RefObject<HTMLElement>
+  scrollRef: RefObject<HTMLElement>;
 };
 
-const AbletonStickyMenu = ({scrollRef}: AbletonStickyMenuProps) => {
+const AbletonStickyMenu = ({ scrollRef }: AbletonStickyMenuProps) => {
   const scroll = useRef<number | null>(0);
   const [hidden, setHidden] = useState(false);
 
@@ -27,22 +28,25 @@ const AbletonStickyMenu = ({scrollRef}: AbletonStickyMenuProps) => {
 
   return (
     <div className="flex sticky top-0 h-16 w-full z-30">
-      <div className={`flex items-center h-full w-full bg-white bg-opacity-80 
-        transition ease duration-300
-        transform ${hidden ? "-translate-y-full" : "translate-y-0"}`}>
-        <StickyMenuLink label="About" active/>
-        <StickyMenuLink label="Jobs"/>
+      <div
+        className={classNames(
+          "flex items-center h-full w-full bg-white bg-opacity-80 transition ease duration-300",
+          { "-translate-y-full": hidden, "translate-y-0": !hidden }
+        )}
+      >
+        <StickyMenuLink label="About" active />
+        <StickyMenuLink label="Jobs" />
       </div>
     </div>
   );
 };
 
 type StickyMenuLinkProps = {
-  label: string,
-  active?: boolean
-}
+  label: string;
+  active?: boolean;
+};
 
-const StickyMenuLink = ({label, active}: StickyMenuLinkProps) => {
+const StickyMenuLink = ({ label, active }: StickyMenuLinkProps) => {
   return (
     <a
       href={`#${label}`}

@@ -1,4 +1,4 @@
-import {ReactNode} from "react";
+import { ReactNode } from "react";
 import AbletonLogo from "./ableton-logo";
 
 const AbletonFooter = () => {
@@ -23,12 +23,11 @@ const AbletonFooter = () => {
             </span>
             <div className="flex my-4">
               <input
-                className="min-w-0 flex-grow bg-black bg-opacity-10 px-2 "
+                className="min-w-0 grow bg-black bg-opacity-10 px-2 "
                 type="email"
                 placeholder="Email Address"
               />
-              <button
-                className="bg-[#0000ff] text-white py-2 px-4 flex-shrink-0">
+              <button className="bg-[#0000ff] text-white py-2 px-4 flex-shrink-0">
                 Sign up
               </button>
             </div>
@@ -40,16 +39,16 @@ const AbletonFooter = () => {
             <div className="flex flex-col space-y-1">
               <div className="flex space-x-2 py-2">
                 <a href={"#facebook"}>
-                  <FacebookSVG/>
+                  <FacebookSVG />
                 </a>
                 <a href={"#twitter"}>
-                  <TwitterSVG/>
+                  <TwitterSVG />
                 </a>
                 <a href={"#youtube"}>
-                  <YoutubeSVG/>
+                  <YoutubeSVG />
                 </a>
                 <a href={"#instagram"}>
-                  <InstagramSVG/>
+                  <InstagramSVG />
                 </a>
               </div>
             </div>
@@ -73,7 +72,7 @@ const AbletonFooter = () => {
             />
           </FooterSection>
           <FooterSection header="Distributors">
-            <SectionLinks links={["Find Distributors", "Try Push in-store"]}/>
+            <SectionLinks links={["Find Distributors", "Try Push in-store"]} />
           </FooterSection>
           <FooterSection header="Language and Location">
             <div className="flex flex-wrap text-xs font-medium">
@@ -96,8 +95,7 @@ const AbletonFooter = () => {
             </div>
           </FooterSection>
         </div>
-        <div
-          className="flex flex-col mt-8 lg:flex-row lg:items-center lg:pb-16">
+        <div className="flex flex-col mt-8 lg:flex-row lg:items-center lg:pb-16">
           <FooterSection>
             <div
               className="flex flex-col space-y-3
@@ -118,10 +116,10 @@ const AbletonFooter = () => {
               ))}
             </div>
           </FooterSection>
-          <div className="hidden: lg:block flex-grow"/>
+          <div className="hidden: lg:block grow" />
           <FooterSection>
             <div className="flex items-center pt-16 pb-8 lg:p-0">
-              <AbletonLogo className="mr-4"/>
+              <AbletonLogo className="mr-4" />
               <span className="text-xs font-medium">Made in Berlin</span>
             </div>
           </FooterSection>
@@ -137,7 +135,7 @@ type FooterSection = {
   children: ReactNode;
 };
 
-const FooterSection = ({header, children, className = ""}: FooterSection) => {
+const FooterSection = ({ header, children, className = "" }: FooterSection) => {
   return (
     <div className={`flex flex-col ${className}`}>
       {header && <span className="font-medium leading-7">{header}</span>}
@@ -150,7 +148,7 @@ type SectionLinks = {
   links: string[];
 };
 
-const SectionLinks = ({links}: SectionLinks) => {
+const SectionLinks = ({ links }: SectionLinks) => {
   return (
     <div className="flex flex-col space-y-1">
       {links.map((link) => (
@@ -231,7 +229,7 @@ const YoutubeSVG = () => {
           002.358-2.373 35.146 35.146 0 00.557-6.46 35.146 35.146 0 00-.557-6.46z"
         fill="#fff"
       />
-      <path d="M17.273 24.025l6.97-3.961-6.97-3.969z" fill="#ff001d"/>
+      <path d="M17.273 24.025l6.97-3.961-6.97-3.969z" fill="#ff001d" />
     </svg>
   );
 };

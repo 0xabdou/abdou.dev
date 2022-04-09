@@ -1,21 +1,20 @@
-import "../styles/globals.css";
-import {AppProps} from "next/app";
-import {useCallback, useEffect, useState} from "react";
-import ThemeContext, {ThemeContextType} from "../shared/theme-context";
-import TopBar from "../components/top-bar";
+import { AppProps } from "next/app";
+import { useRouter } from "next/router";
+import { useCallback, useEffect, useState } from "react";
 import Drawer from "../components/drawer";
 import Footer from "../components/footer";
-import {useRouter} from "next/router";
+import TopBar from "../components/top-bar";
+import ThemeContext, { ThemeContextType } from "../shared/theme-context";
+import "../styles/globals.css";
 
-
-const MyApp = ({Component, pageProps}: AppProps) => {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [theme, setTheme] = useState<ThemeContextType["theme"]>("dark");
-  const {pathname} = useRouter();
+  const { pathname } = useRouter();
 
   useEffect(() => {
-    const persistedTheme =
-      (localStorage.getItem("theme") ?? "dark") as ThemeContextType["theme"];
+    const persistedTheme = (localStorage.getItem("theme") ??
+      "dark") as ThemeContextType["theme"];
     if (persistedTheme == "light") {
       document.documentElement.classList.remove("dark");
     }
@@ -34,26 +33,26 @@ const MyApp = ({Component, pageProps}: AppProps) => {
     }
   }, [theme, setTheme]);
 
-
   const fep = /^\/front-end-practice\/.+$/;
   const showSharedLayout = !fep.test(pathname);
   return (
-    <ThemeContext.Provider value={{theme, toggleTheme}}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className="flex flex-col w-full text-black dark:text-white">
-        {showSharedLayout &&
-        <>
-          <header className="fixed top-0 w-full z-40">
-            <TopBar onMenuClicked={() => setDrawerOpen(true)}/>
-          </header>
-          <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)}/>
-        </>}
+        {showSharedLayout && (
+          <>
+            <header className="fixed top-0 w-full z-40">
+              <TopBar onMenuClicked={() => setDrawerOpen(true)} />
+            </header>
+            <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+          </>
+        )}
         <main
           className={`flex justify-center w-full max-w-full min-h-screen 
           ${showSharedLayout ? "pt-14" : ""}`}
         >
           <Component {...pageProps} />
         </main>
-        {showSharedLayout && <Footer/>}
+        {showSharedLayout && <Footer />}
       </div>
     </ThemeContext.Provider>
   );
