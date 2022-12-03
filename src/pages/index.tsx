@@ -17,7 +17,7 @@ type HomeProps = {
 const Home = (props: HomeProps) => {
   const title = "Abdou Ouahib | Software Developer🚀";
   const descriptionStr =
-    "A type-safe software developer and tech content creator. Currently a Frontend Lead at Cosmic JS";
+    "A type-safe software developer and tech content creator. Currently a Web3 Frontend Dev at MetaStreet";
 
   return (
     <div className="flex flex-col w-full max-w-4xl">
