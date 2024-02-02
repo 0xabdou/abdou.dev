@@ -169,7 +169,7 @@ I don't know where to go from here, so I'll take my time reflecting and deciding
 
 [hosted-app]:https://chat.abdou.dev/
 
-[github-repo]:https://github.com/aouahib/very_good_chat
+[github-repo]:https://github.com/0xabdou/very_good_chat
 
 [github-graph]:https://dev-to-uploads.s3.amazonaws.com/uploads/articles/849vrcxceax5mlyr98dk.png
 

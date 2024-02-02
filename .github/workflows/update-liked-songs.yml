@@ -21,7 +21,7 @@ jobs:
       - name: Checkout the action
         uses: actions/checkout@v2
         with:
-          repository: aouahib/spotify-job
+          repository: 0xabdou/spotify-job
           token: ${{ secrets.GH_PAT }}
           ref: main
       - name: Execute the action

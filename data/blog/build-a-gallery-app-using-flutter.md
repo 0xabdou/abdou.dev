@@ -77,7 +77,7 @@ Okay, now that we finished exploring the main functionality of the plugin, let's
 ### 1- Cloning the base project and installing the plugin
 First, start by cloning the base project from the link below. Or if you want, you can apply everything directly to one of your own projects.
 ```URL
-https://github.com/aouahib/photo_manager_demo_base
+https://github.com/0xabdou/photo_manager_demo_base
 ```
 Now let's install the [photo_manager][photo_manager] plugin, go to your `pubspec.yaml` file and add the dependency:
 ``` yaml
@@ -455,5 +455,5 @@ You can find the final code in this [github repo][github_repo]. If you have any 
 [final_product]: /static/images/blog/build-a-gallery-app-using-flutter/final-product.mp4
 [screenshot-1]: /static/images/blog/build-a-gallery-app-using-flutter/screenshot1.jpeg
 [screenshot-2]:/static/images/blog/build-a-gallery-app-using-flutter/screenshot2.jpeg
-[github_repo]: https://github.com/aouahib/photo_manager_demo
+[github_repo]: https://github.com/0xabdou/photo_manager_demo
 [peace-out]:/static/images/blog/build-a-gallery-app-using-flutter/peace-out.mp4

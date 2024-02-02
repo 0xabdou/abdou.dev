@@ -5,7 +5,7 @@ banner: "/static/images/projects/very-good-chat/banner.png"
 logo: "/static/images/projects/very-good-chat/logo.png"
 date: "2021-04-28"
 demo: "https://chat.abdou.dev/"
-github: "https://github.com/aouahib/very_good_chat"
+github: "https://github.com/0xabdou/very_good_chat"
 ---
 
 A full-fledged chat application, which mimics the behavior of Facebook Messenger.

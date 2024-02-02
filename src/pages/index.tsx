@@ -7,7 +7,7 @@ import HeaderLink from "../components/header-link";
 import ProjectItem from "../components/project-item";
 import SocialSharePreview from "../components/social-share-preview";
 import { ArticleMeta, getAllArticles } from "../lib/blog";
-import { getAllProjects, ProjectMeta } from "../lib/projects";
+import { ProjectMeta, getAllProjects } from "../lib/projects";
 
 type HomeProps = {
   articles: ArticleMeta[];
@@ -62,12 +62,12 @@ const Home = (props: HomeProps) => {
           <HeaderLink
             icon="fa fa-github"
             label="GitHub"
-            href="https://github.com/aouahib"
+            href="https://github.com/0xabdou"
           />
           <HeaderLink
             icon="fa fa-twitter"
             label="Twitter"
-            href="https://twitter.com/aouahib_"
+            href="https://twitter.com/0xabdou"
           />
           <HeaderLink
             icon="fa fa-linkedin"

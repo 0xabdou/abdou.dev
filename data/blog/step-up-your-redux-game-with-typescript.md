@@ -33,7 +33,7 @@ Here's a sneak peek of the final product.
 I made a base project for your convenience, it has all the required packages, components, and services. So we can focus only on the Redux part. All you need to do is clone the github repo and install the packages:
 
 ```zsh
-git clone https://github.com/aouahib/redux_app_base.git
+git clone https://github.com/0xabdou/redux_app_base.git
 cd redux_app_base
 npm install
 npm start
@@ -583,16 +583,16 @@ I hope you had a good read, see you in the next 👋.
 
 [redux-thunk]:https://github.com/reduxjs/redux-thunk#redux-thunk
 
-[repository-article]:https://dev.to/aouahib/the-repository-pattern-with-typescript-3ibn
+[repository-article]:https://dev.to/0xabdou/the-repository-pattern-with-typescript-3ibn
 
 [final-product]:/static/images/blog/step-up-your-redux-game-with-typescript/final-product.mp4
 
 [auto-complete-screen-shot]:https://dev-to-uploads.s3.amazonaws.com/uploads/articles/j5b2f6vkra4a54m465zz.png
 
-[auth-slice-gist]:https://gist.github.com/aouahib/b63e53d71e2c9d77fefa5d2df6723c92#file-auth-slice-tsx
+[auth-slice-gist]:https://gist.github.com/0xabdou/b63e53d71e2c9d77fefa5d2df6723c92#file-auth-slice-tsx
 
-[logged-in-page-gist]:https://gist.github.com/aouahib/b065bd9f691a617a0c3ecbabb41e9ff7
+[logged-in-page-gist]:https://gist.github.com/0xabdou/b065bd9f691a617a0c3ecbabb41e9ff7
 
-[final-repo]:https://github.com/aouahib/redux_app_final
+[final-repo]:https://github.com/0xabdou/redux_app_final
 
 [bye]:https://media.giphy.com/media/ZCTZKfNl6ABGdqRCBR/giphy.gif

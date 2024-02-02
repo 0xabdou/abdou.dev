@@ -1,5 +1,5 @@
 # abdou.dev
-[![UpdateLikedSongs](https://github.com/aouahib/abdou.dev/actions/workflows/update-liked-songs.yml/badge.svg)](https://github.com/aouahib/abdou.dev/actions/workflows/update-liked-songs.yml)
+[![UpdateLikedSongs](https://github.com/0xabdou/abdou.dev/actions/workflows/update-liked-songs.yml/badge.svg)](https://github.com/0xabdou/abdou.dev/actions/workflows/update-liked-songs.yml)
 
 This is my portfolio, where I post articles, and showcase some of my projects.
 
@@ -12,7 +12,7 @@ Deployed on [▲Vercel][vercel]
 # Run locally
 
 ```bash
-git clone https://github.com/aouahib/abdou.dev
+git clone https://github.com/0xabdou/abdou.dev
 cd abdou.dev
 yarn && yarn dev
 ```

@@ -10,7 +10,7 @@ const SocialSharePreview = (props: TwitterCardProps) => {
   return (
     <Head>
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:creator" content="@aouahib_" />
+      <meta name="twitter:creator" content="@0xabdou" />
       <meta property="og:title" content={props.title} />
       <meta property="og:description" content={props.description} />
       <meta property="og:image" content={`https://abdou.dev${props.image}`} />
